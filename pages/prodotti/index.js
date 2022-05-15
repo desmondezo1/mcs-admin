@@ -344,13 +344,13 @@ export default function prodotti(){
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Status</h3>
                     <div className={productCss.formInputWrapper}>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="published" />
-                            <label class="form-check-label" for="inlineRadio1">Attiva</label>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="status" id="inlineRadio1" value="published" />
+                            <label className="form-check-label" for="inlineRadio1">Attiva</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="unpublished" />
-                            <label class="form-check-label" for="inlineRadio2">Bozza</label>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="status" id="inlineRadio2" value="unpublished" />
+                            <label className="form-check-label" for="inlineRadio2">Bozza</label>
                         </div>                    
                     </div>
                 </div>
