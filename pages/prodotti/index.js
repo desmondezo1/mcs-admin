@@ -17,12 +17,26 @@ export default function prodotti(){
             brand: '',
             description: '',
             title: '',
-            pieces: [{ price: [0,0], discount: [0,0]}]
+            pieces: [{ price: [0,0], discount: [0,0]}],
+            pdf: '',
+            image: '',
+            tag: '',
+            volume: '',
+            surface: '',
+            uses: '',
+            brand: '',
+            description: '',
+            title: ''
           },
          
-          onSubmit: values => {
+          onSubmit: async values => {
               console.log(values);
             // alert(JSON.stringify(values, null, 2));
+            const res = await  fetch('/api/addProduct',{
+                method: "POST",
+                body: values
+            });
+            
           },
           enableReinitialize: true
         });
@@ -226,36 +240,36 @@ export default function prodotti(){
                 <h3 className={productCss.formSectionH3}>Informazione Aggiuntive</h3>
                     <div className={`${productCss.formInputWrapper}`}>
                         <div className={productCss.input}>
-                            <label htmlFor="email">Usi</label>
+                            <label htmlFor="uses">Usi</label>
                             <input
-                                id="email"
-                                name="email"
-                                type="email"
+                                id="uses"
+                                name="uses"
+                                type="text"
                                 className='form-control'
                                 onChange={formik.handleChange}
-                                value={formik.values.email}
+                                value={formik.values.uses}
                             />
                         </div>
                         <div className={productCss.input}>
-                            <label htmlFor="email">Superficie da Trattare</label>
+                            <label htmlFor="surface_with">Superficie da Trattare</label>
                             <input
-                                id="email"
-                                name="email"
-                                type="email"
+                                id="surface"
+                                name="surface"
+                                type="surface"
                                 className='form-control'
                                 onChange={formik.handleChange}
-                                value={formik.values.email}
+                                value={formik.values.surface}
                             />
                         </div>
                         <div className={productCss.input}>
-                            <label htmlFor="email">Volume</label>
+                            <label htmlFor="volume">Volume</label>
                             <input
                                 id="volume"
                                 name="volume"
                                 type="text"
                                 className='form-control'
                                 onChange={formik.handleChange}
-                                value={formik.values.email}
+                                value={formik.values.volume}
                             />
                         </div>
                     </div>
@@ -272,7 +286,7 @@ export default function prodotti(){
                                 type="file"
                                 className='form-control'
                                 onChange={formik.handleChange}
-                                value={formik.values.email}
+                                value={values.pdf}
                             />
                         </div>
                     </div>
@@ -321,7 +335,7 @@ export default function prodotti(){
                                 type="file"
                                 className='form-control'
                                 onChange={formik.handleChange}
-                                value={formik.values.tag}
+                                value={values.tag}
                             />
                         </div>
                     </div>
