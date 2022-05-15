@@ -1,0 +1,78 @@
+.formWrapper{
+    background-color: #E6E6E6;
+    height: 100%;
+    width: auto;
+    min-width:400px ;
+    border-radius: 12.82px;
+    border: 1px solid #999999;
+    padding: 20px;
+    flex-direction: column;
+    display: flex;
+}
+
+.formInputSection{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px 5px 20px 5px;
+    border-bottom: 1px solid #999999;
+    justify-content: space-between;
+}
+
+.formSectionH3{
+    flex-grow: 0.5;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.dynamicListcontainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 65%;
+}
+.formInputWrapper{
+    flex-grow: 1;
+    max-width: 65%;
+}
+
+.categoryTypeWrapper{
+    display: grid;
+    grid-template-columns: 59% 19% 19%;
+    grid-gap: 10px;  
+}
+
+.discountPriceWrapper{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.submitBtn{
+    background-color: black;
+    color: #F0F0F0;
+    padding: 10px 25px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.btnWrapper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .formInputSection{
+        flex-direction: column;
+    }
+}
+
