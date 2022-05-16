@@ -142,7 +142,7 @@ export default function Prodotti(){
                 <h3 className={productCss.formSectionH3}>Pezzi e Prezzi</h3>
                 <div className={productCss.dynamicListcontainer}>
                 { productOptions.map((singleProduct, index) => {
-                   return ( <div className={`${productCss.formInputWrapper} ${index} productListWrapper`}>
+                   return ( <div key={index} className={`${productCss.formInputWrapper} ${index} productListWrapper`}>
                         
                             <label htmlFor="piece">Pezzo {index + 1}</label>
                             <div className={productCss.categoryTypeWrapper}>
