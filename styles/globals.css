@@ -60,3 +60,15 @@ a {
 .small_text {
   font-size: 0.8em;
 }
+
+.primary_background {
+  background: #e6e6e6;
+}
+
+.border_primary {
+  border: 1px solid #999999;
+}
+
+.border-radius-15 {
+  border-radius: 15px;
+}

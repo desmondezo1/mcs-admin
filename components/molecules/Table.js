@@ -1,50 +1,59 @@
 import React from "react";
 import style from "../../styles/table.module.css";
+import PropTypes from "prop-types";
 
 Table.defaultProps = {
-  table: "",
-  HeadContainer: "",
+  headKeys: [],
   tableData: [{}],
-  children: "",
-  headKey: [""],
-  displayHeadKey: false,
+  displayHead: false,
+  displayComponent: false,
   selfDisplayComponent: false,
+  showTableContainerHeader: false,
+};
+Table.propTypes = {
+  headKeys: PropTypes.array,
+  tableData: PropTypes.array.isRequired,
+  displayHead: PropTypes.arrayOf(PropTypes.object),
+  displayComponent: PropTypes.string,
+  showTableContainerHeader: PropTypes.bool,
+  showTableContainerHeader: false,
 };
 
+/**
+ * @headKeys  Array of table head
+ * @tableData Array of table data
+ * @selfDisplayComponent Bool if component should render custom comp
+ * @returns React component
+ */
 function Table({
+  headKeys,
   tableData,
-  children,
-  headKey,
-  displayHeadKey,
-  selfDisplayComponent,
+  displayHead,
   displayComponent,
+  selfDisplayComponent,
+  children,
 }) {
-  const body = tableData.map((data, i) => {
-    const keys = headKey;
-    return (
-      <tr key={i}>
-        {keys.map((key, i) => (
-          <td key={i}>{data[key]}</td>
-        ))}
-      </tr>
-    );
+  console.log(headKeys);
+  const tableHead = headKeys.map((keyValue, i) => <th key={i}>{keyValue}</th>);
+  const tableBody = tableData.map((data, i) => {
+    const mapKeys = headKeys.map(({ headKeyValue }, j) => (
+      <td key={j}>{data[headKeyValue]}</td>
+    ));
+    return <tr key={i}>{mapKeys}</tr>;
   });
   return (
     <div className={style.table_container}>
-      <div className={style.table_container_header}>{children}</div>
+      {children && (
+        <div className={style.table_container_header}>{children}</div>
+      )}
 
       <table className={style.table}>
-        {displayHeadKey && (
+        {displayHead && (
           <thead>
-            <tr>
-              {headKey.map((data, i) => (
-                <th key={i}>{data}</th>
-              ))}
-            </tr>
+            <tr>{tableHead}</tr>
           </thead>
         )}
-
-        <tbody>{selfDisplayComponent ? displayComponent : body}</tbody>
+        <tbody>{selfDisplayComponent ? displayComponent : tableBody}</tbody>
       </table>
     </div>
   );

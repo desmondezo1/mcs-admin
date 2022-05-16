@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../components/molecules/Header";
-import styles from "../styles/Home.module.css";
-import molecule from "../styles/molecule.module.css";
+import Header from "../../components/molecules/Header";
+import styles from "../../styles/Home.module.css";
+import molecule from "../../styles/molecule.module.css";
 
 function inviata(props) {
   return (

@@ -1,11 +1,11 @@
-import Nav from "../components/molecules/Nav";
-import Header from "../components/molecules/Header";
-import styles from "../styles/Home.module.css";
+import Nav from "../../components/molecules/Nav";
+import Header from "../../components/molecules/Header";
+import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 
-import Chart from "../components/molecules/Overview/Chart";
-import SecondContainer from "../components/molecules/Overview/SecondContainer";
-import Table from "../components/molecules/Overview/Table";
+import Chart from "../../components/molecules/Overview/Chart";
+import SecondContainer from "../../components/molecules/Overview/SecondContainer";
+import Table from "../../components/molecules/Overview/Table";
 
 function overview(props) {
   return (

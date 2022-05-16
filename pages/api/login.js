@@ -1,16 +1,21 @@
-export default async function login(req, res) {
-    if(!req.body){
-        res.status(400).json({msg: 'empty payload'})
+export default async function Login(req, res){
+    if (req.method !== 'POST' ) {
+        res.status(400).json({msg : 'invalid-method'})
     }
 
-    // console.log(req.body);
+    if ( !req.body) {
+        res.status(400).json({msg : 'Values empty'})
+    }
 
-    const response = await fetch(process.env.BACKEND_API_BASE_URL + "/login",{
-        method: "POST",
-        body: req.body
+    const respData = await fetch(`${process.env.BACKEND_API_BASE_URL}/login`,{
+        body: JSON.stringify(req.body.values),
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/json'
+        }
     });
+    let dataApi = await respData.json();
+    res.status(200).json(dataApi);
 
-    res.status(200).json( response );
-
-  }
-  
+    
+}

@@ -1,0 +1,55 @@
+.form_container {
+  width: 50%;
+  min-height: 50vh;
+}
+
+.input_container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input_container input {
+  background-color: transparent;
+  border-radius: 15px;
+  width: 70%;
+  font-size: 0.8em;
+}
+
+.input_container > label,
+.input_container .label {
+  width: 30%;
+}
+
+.input_container > label::after,
+.input_container .label::after {
+  content: "*";
+  color: red;
+}
+
+.input_container .radio_container {
+  min-width: 70%;
+}
+.radio_container input[type="radio"] {
+  width: auto;
+  visibility: hidden;
+  position: absolute;
+}
+.radio_container label {
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  border: 1px solid #000000;
+  margin-right: 10px;
+}
+.radio_container input[type="radio"]:checked + label {
+  background-color: black;
+  color: white;
+}
+
+.form_container .submit_button {
+  background-color: red;
+  margin-left: 50% !important;
+  transform: translateX(-50%);
+}

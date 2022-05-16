@@ -33,7 +33,7 @@ function Table(props) {
           )
         )}
       >
-        <p>Latest Orders</p>
+        <p className="grey_text">Latest Orders</p>
         <div>
           <Button color="secondary" size={"auto"}>
             <p

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Header from "../components/molecules/Header";
-import RecoverPassword from "../components/molecules/RecoverPassword";
-import styles from "../styles/Home.module.css";
+import Header from "../../components/molecules/Header";
+import RecoverPassword from "../../components/molecules/RecoverPassword";
+import styles from "../../styles/Home.module.css";
 
 function recoverPassword(props) {
   return (

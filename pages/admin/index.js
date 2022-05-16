@@ -1,17 +1,9 @@
 import Head from "next/head";
-import React from "react";
 import Header from "../../components/molecules/Header";
-import Nav from "../../components/molecules/Nav";
+import LoginForm from "../../components/molecules/Login/LoginForm";
 import styles from "../../styles/Home.module.css";
-import Table from "../../components/molecules/Table";
-import Button from "../../components/atoms/Buttons";
-import SearchIcon from "../../images/icons/SearchIcon";
-import AddIcon from "../../images/icons/AddIcon";
-import { adminData } from "../../config/OverviewTable";
-import ProfilePicture from "../../images/icons/ProfilePicture";
-import TableMenuIcon from "../../images/icons/TableMenuIcon";
 
-function index(props) {
+export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -24,81 +16,10 @@ function index(props) {
         <Header>
           <p>Dashboard</p>
         </Header>
-        <div className="dashboard_container">
-          <Nav />
-          <div className={styles.overview_body_container}>
-            <h4>User Management</h4>
-            <br />
-            <br />
-            <Table
-              headKey={[
-                "Name",
-                "Roulo",
-                "Data Creata",
-                "Status",
-                () => <AddIcon />,
-              ]}
-              tableData={adminData}
-              displayHeadKey={true}
-              selfDisplayComponent={true}
-              displayComponent={adminData.map(
-                ({ name, roulo, date, status }, i) => (
-                  <tr key={i}>
-                    <td>
-                      <ProfilePicture
-                        style={{
-                          marginRight: "6px",
-                        }}
-                      />
-                      {name}
-                    </td>
-                    <td>{roulo}</td>
-                    <td>{date}</td>
-                    <Button
-                      size={"auto"}
-                      fontSize="0.8em"
-                      color={status === "Attivo" ? "Received" : "Cancelled"}
-                      margin="16px 0"
-                    >
-                      {status}
-                    </Button>
-                    <td>
-                      <TableMenuIcon />
-                    </td>
-                  </tr>
-                )
-              )}
-            >
-              <Button color="secondary" size={"auto"}>
-                <p
-                  style={{
-                    margin: "0px",
-                    marginRight: "10px",
-                  }}
-                  className="small_text grey_text mr-1"
-                >
-                  RICERCA USER
-                </p>
-                <SearchIcon />
-              </Button>
-              <Button color="secondary" size={"auto"}>
-                <AddIcon />
-                <p
-                  style={{
-                    margin: "0px",
-                    marginLeft: "10px",
-                  }}
-                  className="small_text"
-                >
-                  NUOVO USER
-                </p>
-              </Button>
-            </Table>
-          </div>
+        <div className="body_container">
+          <LoginForm />
         </div>
       </main>
     </div>
   );
 }
-
-export default index;

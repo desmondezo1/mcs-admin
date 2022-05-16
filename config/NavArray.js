@@ -1,23 +1,23 @@
 const arr = [
   {
     display: "OVERVIEW",
-    href: "/overview",
+    href: "/admin/overview",
   },
   {
     display: "ADMIN",
-    href: "/admin",
+    href: "/admin/admin_page",
   },
   {
     display: "CLIENTI",
-    href: "/clienti",
+    href: "/admin/clienti",
   },
   {
     display: "PRODOTTI",
-    href: "/prodotti",
+    href: "/admin/prodotti",
   },
   {
     display: "BRAND",
-    href: "/brand",
+    href: "/admin/brand",
   },
 ];
 
