@@ -355,13 +355,13 @@ export default function Prodotti(){
                             <input className="form-check-input"
                                 onChange={formik.handleChange}
                                 type="radio" name="status" id="inlineRadio1" value="published"  />
-                            <label className="form-check-label" for="inlineRadio1">Attiva</label>
+                            <label className="form-check-label" htmlFor="inlineRadio1">Attiva</label>
                         </div>
                         <div className="form-check form-check-inline">
                             <input className="form-check-input"
                              onChange={formik.handleChange}
                               type="radio" name="status" id="inlineRadio2" value="unpublished" />
-                            <label className="form-check-label" for="inlineRadio2">Bozza</label>
+                            <label className="form-check-label" htmlFor="inlineRadio2">Bozza</label>
                         </div>                    
                     </div>
                 </div>
