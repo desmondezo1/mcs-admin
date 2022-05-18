@@ -4,18 +4,31 @@ import Header from '../../../components/molecules/Header'
 import Nav from '../../../components/molecules/Nav'
 import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import fetchR from '../../../fetchR'
 // import { Formik, Form, useField } from 'formik';
 // import TextArea from '../../components/atoms/form/formElements'
 
 export default function Prodotti(){
 
     const [productOptions, setProductOptions] = useState([{product: ""}])
+    const [fromVals, setFormVals] = useState({})
 
-    const handleResp = (resp)=>{
-        console.log(resp)
-    }
-   
+        useEffect(() =>{
+        // const token = window.localStorage.getItem('token');
+        // const axiosConfig = {
+        //     headers: {
+        //         'Content-Type': 'undefined',
+        //         'Authorization': 'Bearer ' + token,
+        //     }
+        //   }
+
+        //   setAxiosConfig(axiosConfig);
+        })
+
+    
+
         const formik = useFormik({
           initialValues: {
             brand: '',
@@ -33,16 +46,40 @@ export default function Prodotti(){
             title: ''
           },
          
-          onSubmit: async values => {
-              console.log(values);
-            // alert(JSON.stringify(values, null, 2));
-            const res = await  fetch('/api/addProduct',{
-                method: "POST",
-                body: JSON.stringify({values}),
+          onSubmit: async values => {    
+              
+            let formD = await values;
+            if (values.pieces) {
+            
+            //  values.pieces = JSON.stringify(values.pieces);
+             setFormVals(formD);
+             console.log({formD});
+            }
+            let formData = new FormData(document.querySelector('form'));
+            const token = window.localStorage.getItem('token');
+            console.log(token);
+            const axiosConfig = {
                 headers: {
-                  'content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
                 }
-              }).then(r => r.json()).then(resp =>  handleResp(resp));
+              }
+
+              let ax = await axios.post(
+                  'http://127.0.0.1:8000/api/admin/products/create',
+                  formD,
+                  axiosConfig
+              ).then(result => {console.log(result)})
+            //   let data = await ax.json();
+            //   console.log({data});
+        
+            //   const respData = await fetch(`/api/addProduct?v=${token}`,{
+            //     method: "POST",
+            //     body: formData,
+            //   });
+
+            //   let data = await respData.json();
+            //   console.log({data});
             
           },
           enableReinitialize: true
@@ -339,7 +376,7 @@ export default function Prodotti(){
                             <input
                                 id="tag"
                                 name="tag"
-                                type="file"
+                                type="text"
                                 className='form-control'
                                 onChange={formik.handleChange}
                                 value={values.tag}

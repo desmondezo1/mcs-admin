@@ -23,6 +23,16 @@ export function RoundedInput({ id, label, ...rest }) {
   );
 }
 
+export function RoundedInputWithIcon({ Prefix, Suffix, ...rest }) {
+  return (
+    <div className={FormStyle.input_field_with_icon}>
+      {Prefix && <Prefix />}
+      <input type="text" {...rest} />
+      {Suffix && <Suffix />}
+    </div>
+  );
+}
+
 export function RadioButton({ label, name, value }) {
   return (
     <>
@@ -37,11 +47,15 @@ RadioButtonContainer.defaultProps = {
   label: "Input Label",
 };
 
+RadioButtonContainer.defaultProps = {
+  showLabel: true,
+};
 export function RadioButtonContainer({
   id,
   label,
   name,
   radioButtons,
+  showLabel,
   ...rest
 }) {
   const radios = radioButtons.map(({ label: inputLabel, value }, i) => (
@@ -49,9 +63,11 @@ export function RadioButtonContainer({
   ));
   return (
     <div className={`${FormStyle.input_container}  my-3`}>
-      <div htmlFor={id} className="label">
-        {name}
-      </div>
+      {showLabel && (
+        <div htmlFor={id} className="label">
+          {name}
+        </div>
+      )}
       <div className={`${FormStyle.radio_container}`}>{radios}</div>
     </div>
   );

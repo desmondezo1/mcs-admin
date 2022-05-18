@@ -17,7 +17,6 @@ function Buttons({
   margin,
   ...rest
 }) {
-  console.log(color);
   return (
     <button
       onClick={onClick}

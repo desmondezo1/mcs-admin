@@ -1,18 +1,19 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../../../components/molecules/Header";
-import Nav from "../../../components/molecules/Nav";
-import styles from "../../../styles/Home.module.css";
-import Table from "../../../components/molecules/Table";
-import ClientList from "../../../config/ClientList";
-import Button from "../../../components/atoms/Buttons";
-import TableMenuIcon from "../../../images/icons/TableMenuIcon";
-import ProfilePicture from "../../../images/icons/ProfilePicture";
-import SearchIcon from "../../../images/icons/SearchIcon";
+import Header from "../../components/molecules/Header";
+import Nav from "../../components/molecules/Nav";
+import styles from "../../styles/Home.module.css";
+import Table from "../../components/molecules/Table";
+import Button from "../../components/atoms/Buttons";
+import TableMenuIcon from "../../images/icons/TableMenuIcon";
+import ProfilePicture from "../../images/icons/ProfilePicture";
+import SearchIcon from "../../images/icons/SearchIcon";
 import {
   RadioButtonContainer,
   RoundedInputWithIcon,
-} from "../../../components/atoms/Input";
+} from "../../components/atoms/Input";
+import OrdiniData from "../../config/OrdiniData";
+import DownArrow from "../../images/icons/DownArrow";
 
 function index(props) {
   return (
@@ -34,28 +35,30 @@ function index(props) {
               <h4>Lista Clienti</h4>
               <br />
               <Table
-                headKeys={["No", "Nome", "Email", "Data Creata", "Status", ""]}
-                tableData={ClientList}
+                headKeys={[
+                  "#ID",
+                  "Nome",
+                  "Email",
+                  "Valore",
+                  "Status",
+                  "Data Creata",
+                  <DownArrow key="arr" />,
+                ]}
+                tableData={OrdiniData}
                 displayHead={true}
                 selfDisplayComponent={true}
                 display
-                displayComponent={ClientList.map(
-                  ({ no, name, email, status, date }, i) => (
+                displayComponent={OrdiniData.map(
+                  ({ id, name, email, valore, status, date }, i) => (
                     <tr key={i}>
-                      <td>{no}</td>
-                      <td>
-                        <ProfilePicture
-                          style={{
-                            marginRight: "6px",
-                          }}
-                        />
-                        {name}
-                      </td>
+                      <td>{id}</td>
+                      <td>{name}</td>
                       <td>{email}</td>
+                      <td>{valore}</td>
                       <Button
                         size={"auto"}
                         fontSize="0.8em"
-                        color={status === "Attivo" ? "Received" : "Cancelled"}
+                        color={status}
                         margin="16px 0"
                       >
                         {status}
@@ -70,7 +73,7 @@ function index(props) {
               >
                 <RoundedInputWithIcon
                   Suffix={SearchIcon}
-                  placeholder="RICERCA CLIENTI"
+                  placeholder="RICERCA ORDINE"
                 />
 
                 <RadioButtonContainer
@@ -79,8 +82,10 @@ function index(props) {
                   showLabel={false}
                   radioButtons={[
                     { label: "TUTTI", value: "TUTTI" },
-                    { label: "CATEGORIA 1", value: "CATEGORIA 1" },
-                    { label: "CATEGORIA 2", value: "CATEGORIA 2" },
+                    { label: "RECEIVED", value: "RECEIVED" },
+                    { label: "PENDING", value: "PENDING" },
+                    { label: "CANCELLED", value: "CANCELLED" },
+                    { label: "SHIPPED", value: "SHIPPED" },
                   ]}
                 />
               </Table>

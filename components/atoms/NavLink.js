@@ -18,7 +18,7 @@ function NavLink({ href, exact, children, ...props }) {
   const isActive = exact ? pathname === href : pathname.startsWith(href);
 
   return (
-    <Link href={href} passHref>
+    <Link href={href}>
       <Button
         {...props}
         color={isActive ? "primary" : "secondary"}

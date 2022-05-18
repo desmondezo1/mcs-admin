@@ -16,6 +16,10 @@ const arr = [
     href: "/admin/prodotti",
   },
   {
+    display: "ORDINI",
+    href: "/admin/ordini",
+  },
+  {
     display: "BRAND",
     href: "/admin/brand",
   },

@@ -53,3 +53,27 @@
   margin-left: 50% !important;
   transform: translateX(-50%);
 }
+
+.input_field_with_icon {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 1px 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 1s;
+}
+
+.input_field_with_icon input {
+  background-color: transparent;
+  border: none;
+  width: auto;
+  font-size: 0.8em;
+  outline: none;
+  transition: width 0.7s ease-in-out;
+  width: 100px;
+}
+.input_field_with_icon input:focus {
+  width: 200px;
+}

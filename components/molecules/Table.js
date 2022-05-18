@@ -13,10 +13,8 @@ Table.defaultProps = {
 Table.propTypes = {
   headKeys: PropTypes.array,
   tableData: PropTypes.array.isRequired,
-  displayHead: PropTypes.arrayOf(PropTypes.object),
-  displayComponent: PropTypes.string,
+  displayHead: PropTypes.bool,
   showTableContainerHeader: PropTypes.bool,
-  showTableContainerHeader: false,
 };
 
 /**
@@ -33,7 +31,6 @@ function Table({
   selfDisplayComponent,
   children,
 }) {
-  console.log(headKeys);
   const tableHead = headKeys.map((keyValue, i) => <th key={i}>{keyValue}</th>);
   const tableBody = tableData.map((data, i) => {
     const mapKeys = headKeys.map(({ headKeyValue }, j) => (
