@@ -358,7 +358,13 @@ export default function Prodotti(){
                     <div className={productCss.formInputWrapper}>
                         <div className={productCss.input}>
                                 <label htmlFor="categoria">Seleziona Categoria</label>
-                                <select className='custom-select form-control' id="categoria">
+                                <select  
+                                    name='category' 
+                                    className='custom-select form-control'
+                                    onChange={formik.handleChange}
+                                    value={formik.values.category}
+                                    id="categoria"
+                                >
                                     <option selected>Choose...</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
