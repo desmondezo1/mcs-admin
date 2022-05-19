@@ -6,11 +6,13 @@ import Button from "../../atoms/Buttons";
 import Checkbox from "../../atoms/Checkbox";
 import { useState } from "react";
 import { useRouter } from 'next/router'
+import routeConfig from "../../../config/routeConfig";
 import { useFormik, Field,FormikProvider } from 'formik';
+import axios from "axios";
 
 
 function LoginForm(props) {
-
+  
   // let [email, setEmail] = useState('');
   // let [password, setPassword] = useState('');
 
@@ -33,21 +35,28 @@ function LoginForm(props) {
         email: '',
         password: '',
       },
+
       onSubmit: async values => {
-
-        console.log({values});
-
-        const resp = await fetch("/api/login",{
-          method: "POST",
-          body: JSON.stringify({values}),
+        const loginUrl = routeConfig.login;
+        console.log({loginUrl});
+        let formD = await values;
+        const axiosConfig = {
           headers: {
-            'content-Type': 'application/json'
+              'Content-Type': 'application/json',
           }
-        }).then(r => r.json()).then(resp =>  handleLogin(resp));
+        }
 
-        // const data = await resp.json();
-        // console.log({data});
-        
+        let ax = await axios.post(
+            loginUrl,
+            formD,
+            axiosConfig
+        ).then(result =>{
+
+
+        console.log(result);
+        handleLogin(result);
+      
+      })
 
       },
     });

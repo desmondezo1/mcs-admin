@@ -6,6 +6,7 @@ import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import routeConfig from '../../../config/routeConfig'
 import fetchR from '../../../fetchR'
 // import { Formik, Form, useField } from 'formik';
 // import TextArea from '../../components/atoms/form/formElements'
@@ -47,7 +48,7 @@ export default function Prodotti(){
           },
          
           onSubmit: async values => {    
-              
+            const createProduct = routeConfig.createProduct;
             let formD = await values;
             if (values.pieces) {
             
@@ -55,7 +56,7 @@ export default function Prodotti(){
              setFormVals(formD);
              console.log({formD});
             }
-            let formData = new FormData(document.querySelector('form'));
+
             const token = window.localStorage.getItem('token');
             console.log(token);
             const axiosConfig = {
@@ -66,20 +67,10 @@ export default function Prodotti(){
               }
 
               let ax = await axios.post(
-                  'http://127.0.0.1:8000/api/admin/products/create',
+                  createProduct,
                   formD,
                   axiosConfig
               ).then(result => {console.log(result)})
-            //   let data = await ax.json();
-            //   console.log({data});
-        
-            //   const respData = await fetch(`/api/addProduct?v=${token}`,{
-            //     method: "POST",
-            //     body: formData,
-            //   });
-
-            //   let data = await respData.json();
-            //   console.log({data});
             
           },
           enableReinitialize: true
