@@ -7,7 +7,6 @@ import { useFormik, Field,FormikProvider } from 'formik';
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import routeConfig from '../../../config/routeConfig'
-import fetchR from '../../../fetchR'
 // import { Formik, Form, useField } from 'formik';
 // import TextArea from '../../components/atoms/form/formElements'
 

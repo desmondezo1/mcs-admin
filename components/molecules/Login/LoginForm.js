@@ -20,11 +20,11 @@ function LoginForm(props) {
 
   function handleLogin(resp) {
 
-    if(!resp.access_token){
+    if(!resp.data.access_token){
       return;
     }
     router.push('/admin/overview');
-    localStorage.setItem("token", resp.access_token);
+    localStorage.setItem("token", resp.data.access_token);
 
   }
   
