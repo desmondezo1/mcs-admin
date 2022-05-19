@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.input_container.column {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .input_container input {
   background-color: transparent;
   border-radius: 15px;
@@ -17,6 +23,9 @@
   font-size: 0.8em;
 }
 
+.input_container.column input {
+  width: 100%;
+}
 .input_container > label,
 .input_container .label {
   width: 30%;

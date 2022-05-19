@@ -13,10 +13,16 @@ export default Input;
 RoundedInput.defaultProps = {
   id: "Input Id",
   label: "Input Label",
+  labelAlign: "row",
 };
-export function RoundedInput({ id, label, ...rest }) {
+
+export function RoundedInput({ id, label, labelAlign, ...rest }) {
   return (
-    <div className={`${FormStyle.input_container}  my-2`}>
+    <div
+      className={`${FormStyle.input_container} ${
+        labelAlign === "vertical" && FormStyle.column
+      }  my-2`}
+    >
       <label htmlFor={id}>{label}</label>
       <input id={id} className="p-1 px-2" {...rest} />
     </div>
