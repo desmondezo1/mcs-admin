@@ -15,7 +15,7 @@ import routeConfig from '../../../config/routeConfig'
 // import { Formik, Form, useField } from 'formik';
 // import TextArea from '../../components/atoms/form/formElements'
 
-export default function prodotti({brands}){
+export default function Prodotti({brands}){
 
     const [productOptions, setProductOptions] = useState([{product: ""}])
     const [allBrands, setBrands] = useState([]);
