@@ -1,6 +1,7 @@
 import React from "react";
 
 // import Input from "../../atoms/Input";
+import Cookies from 'js-cookie'
 import style from "../../../styles/molecule.module.css";
 import Button from "../../atoms/Buttons";
 import Checkbox from "../../atoms/Checkbox";
@@ -22,9 +23,14 @@ function LoginForm(props) {
 
     if(!resp.data.access_token){
       return;
-    }
-    router.push('/admin/overview');
+    } 
+    // set cookie 
+
+    Cookies.set('token',resp.data.access_token);
+    // set storage 
     localStorage.setItem("token", resp.data.access_token);
+    router.push('/admin/overview');
+   
 
   }
   

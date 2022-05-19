@@ -3,12 +3,15 @@ import Head from 'next/head'
 import Header from '../../../components/molecules/Header'
 import Nav from '../../../components/molecules/Nav'
 import productCss from '../../../styles/prodotti/prodotti.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import { useFormik, Field,FormikProvider } from 'formik';
 import axios from 'axios'
 import routeConfig from '../../../config/routeConfig'
 import BrandCard from '../../../components/atoms/brandCard'
+import Cok from 'cookie'
 
-export default function Brand(){
+export default function Brand({brands}){
     const formik = useFormik({
     initialValues: {
         name: '',
@@ -16,7 +19,7 @@ export default function Brand(){
         
     },
 
-    onSubmit: async values => { 
+    onSubmit: async (values, {resetForm}) => { 
         let brandUrl = routeConfig.addBrand; 
         let Val = await values;
         const token = window.localStorage.getItem('token');
@@ -33,7 +36,16 @@ export default function Brand(){
               Val,
               axiosConfig
           ).then(result =>{
+            if(result.status == 200){
+                toast.success("Added")
+              }else{
+                  toast.error("Sorry, I guess something went wrong")
+              }
+              resetForm({values: ''})
               console.log(result);
+          }).catch(function (error) {
+            toast.error("Sorry, I guess something went wrong")
+            console.log(error.response.data)
           });
   
     },
@@ -86,6 +98,7 @@ export default function Brand(){
           <Nav />
         <div className={styles.overview_body_container}>
             <h2>Brand</h2>
+            <ToastContainer />
             <div className={productCss.formWrapper}>
                 
             <FormikProvider value={formik}>
@@ -95,14 +108,11 @@ export default function Brand(){
                     <div className={`${productCss.formInputWrapper}`}>
                         
                         <div className="brandListWrapper">
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
-                        <BrandCard  name={"Test"} />
+                            {
+                                brands.map((brand , index) => {
+                                    return  <BrandCard key={index} totalProducts={brand.count}  name={brand.name} />
+                                })
+                            }
                         </div>
 
                     </div>
@@ -156,3 +166,38 @@ export default function Brand(){
         </>
     )
 }
+
+export async function getServerSideProps({req, res}) {
+
+    // let token = req.headers.Cookies || '';
+   let cook = Cok.parse( req.headers.cookie )|| '';
+
+   let token = cook.token;
+  
+    const brandUrl = routeConfig.getBrandsAdmin;
+    
+    const axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        }
+      }
+
+      let ax = await axios.get(
+            brandUrl,
+          axiosConfig
+      );
+
+      let result = await ax;
+      console.log(result.data.data);
+      let brands = [];
+
+      if(result.data.data){
+           brands = result.data.data;
+      }
+     
+
+  
+    // Pass data to the page via props
+    return { props: { brands } }
+  }

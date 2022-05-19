@@ -1,32 +1,25 @@
 import styles  from '../../../styles/Home.module.css'
 import Head from 'next/head'
 import Header from '../../../components/molecules/Header'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import Nav from '../../../components/molecules/Nav'
 import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
 import { useEffect, useState } from 'react'
+import { TagsInput } from "react-tag-input-component";
+// import Cookies from 'js-cookie'
+import Cok from 'cookie'
 import axios from 'axios'
 import routeConfig from '../../../config/routeConfig'
 // import { Formik, Form, useField } from 'formik';
 // import TextArea from '../../components/atoms/form/formElements'
 
-export default function Prodotti(){
+export default function prodotti({brands}){
 
     const [productOptions, setProductOptions] = useState([{product: ""}])
-    const [fromVals, setFormVals] = useState({})
-
-        useEffect(() =>{
-        // const token = window.localStorage.getItem('token');
-        // const axiosConfig = {
-        //     headers: {
-        //         'Content-Type': 'undefined',
-        //         'Authorization': 'Bearer ' + token,
-        //     }
-        //   }
-
-        //   setAxiosConfig(axiosConfig);
-        })
-
+    const [allBrands, setBrands] = useState([]);
+    const [selectedTag, setSelectedTag] = useState([]);
     
 
         const formik = useFormik({
@@ -46,18 +39,13 @@ export default function Prodotti(){
             title: ''
           },
          
-          onSubmit: async values => {    
+          onSubmit: async (values, {resetForm}) => {    
             const createProduct = routeConfig.createProduct;
             let formD = await values;
-            if (values.pieces) {
-            
-            //  values.pieces = JSON.stringify(values.pieces);
-             setFormVals(formD);
-             console.log({formD});
-            }
+                formD.tag = selectedTag;
 
             const token = window.localStorage.getItem('token');
-            console.log(token);
+            console.log({formD});
             const axiosConfig = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,7 +57,19 @@ export default function Prodotti(){
                   createProduct,
                   formD,
                   axiosConfig
-              ).then(result => {console.log(result)})
+              ).then(result => {
+                  if(result.status == 200){
+                    toast.success("Added")
+                  }else{
+                      toast.error("Sorry, I guess something went wrong")
+                  }
+                  resetForm({values: ''})
+                console.log(result)
+            
+            }).catch(function (error) {
+                toast.error("Sorry, I guess something went wrong")
+                console.log(error.response.data)
+              });
             
           },
           enableReinitialize: true
@@ -105,12 +105,13 @@ export default function Prodotti(){
 
       <main className={styles.main}>
         <Header>
-          <p>Dashboard</p>
+          <p>Dashboard </p>
         </Header>
         <div className="dashboard_container">
           <Nav />
           <div className={styles.overview_body_container}>
             <h2>Aggiungi Prodotto</h2>
+            <ToastContainer />
             <div className={productCss.formWrapper}>
                 
             <FormikProvider value={formik}>
@@ -152,11 +153,12 @@ export default function Prodotti(){
                                 onChange={formik.handleChange}
                                 value={formik.values.brand}
                                 id="brand"
-                                >
-                                    <option selected >Brand..</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                ><option selected >Brand..</option>
+                                {
+                                    brands.map((brand, index) =>{
+                                        return <option key={index} value={brand.id}>{brand.name}</option>
+                                    })
+                                }
                                 </select>
                         </div>
 
@@ -270,6 +272,7 @@ export default function Prodotti(){
                 </div>
                 </div>
 
+                {/* add product uses  */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Informazione Aggiuntive</h3>
                     <div className={`${productCss.formInputWrapper}`}>
@@ -309,6 +312,7 @@ export default function Prodotti(){
                     </div>
                 </div>
 
+                {/* upload pdf  */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Info Scheda Tecnica</h3>
                     <div className={productCss.formInputWrapper}>
@@ -325,7 +329,8 @@ export default function Prodotti(){
                         </div>
                     </div>
                 </div>
-
+                
+                {/* upload product photo  */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Media</h3>
                     <div className={productCss.formInputWrapper}>
@@ -343,6 +348,7 @@ export default function Prodotti(){
                     </div>
                 </div>
 
+                {/* add categories  */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Categoria</h3>
                     <div className={productCss.formInputWrapper}>
@@ -364,23 +370,32 @@ export default function Prodotti(){
                     </div>
                 </div>
 
+                {/* add tags */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Tag</h3>
                     <div className={productCss.formInputWrapper}>
                         <div className={productCss.input}>
                         <label htmlFor="tag">Aggiungi Tag (#)</label>
-                            <input
+                            {/* <input
                                 id="tag"
                                 name="tag"
                                 type="text"
                                 className='form-control'
                                 onChange={formik.handleChange}
                                 value={values.tag}
+                            /> */}
+                            <TagsInput
+                                className='form-control'
+                                value={selectedTag}
+                                onChange={setSelectedTag}
+                                name="tags"
+                                placeHolder="tags"
                             />
                         </div>
                     </div>
                 </div>
-
+                
+                {/* add product status  */}
                 <div className={productCss.formInputSection}>
                 <h3 className={productCss.formSectionH3}>Status</h3>
                     <div className={productCss.formInputWrapper}>
@@ -415,3 +430,35 @@ export default function Prodotti(){
         </>
     )
 }
+
+
+export async function getServerSideProps({req, res}) {
+
+    // let token = req.headers.Cookies || '';
+   let cook = Cok.parse( req.headers.cookie )|| '';
+   let token = cook.token;
+    const brandUrl = routeConfig.getBrandsAdmin;
+    
+    const axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        }
+      }
+
+      let ax = await axios.get(
+            brandUrl,
+          axiosConfig
+      );
+
+      let result = await ax;
+      console.log(result.data.data);
+      let brands = [];
+
+      if(result.data.data){
+           brands = result.data.data;
+      }
+    
+    // Pass data to the page via props
+    return { props: { brands } }
+  }
