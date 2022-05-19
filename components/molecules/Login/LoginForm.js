@@ -38,7 +38,7 @@ function LoginForm(props) {
 
       onSubmit: async values => {
         const loginUrl = routeConfig.login;
-        console.log({loginUrl});
+        console.log({loginUrl, env:process.env.BACKEND_API_BASE_URL});
         let formD = await values;
         const axiosConfig = {
           headers: {
