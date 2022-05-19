@@ -4,7 +4,6 @@ import Header from '../../../components/molecules/Header'
 import Nav from '../../../components/molecules/Nav'
 import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
-import { useEffect, useState } from 'react'
 import axios from 'axios'
 import routeConfig from '../../../config/routeConfig'
 import BrandCard from '../../../components/atoms/brandCard'
@@ -12,11 +11,31 @@ import BrandCard from '../../../components/atoms/brandCard'
 export default function Brand(){
     const formik = useFormik({
     initialValues: {
-
+        name: '',
+        photo: '',
+        
     },
 
     onSubmit: async values => { 
-
+        let brandUrl = routeConfig.addBrand; 
+        let Val = await values;
+        const token = window.localStorage.getItem('token');
+        
+        const axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+            }
+          }
+  
+          let ax = await axios.post(
+              brandUrl,
+              Val,
+              axiosConfig
+          ).then(result =>{
+              console.log(result);
+          });
+  
     },
         enableReinitialize: true
     });
@@ -106,20 +125,20 @@ export default function Brand(){
                         </div>
 
                         <div className={productCss.input}>
-                            <label htmlFor="logo">Logo del Brand</label>
+                            <label htmlFor="photo">Logo del Brand</label>
                             <input
-                                id="logo"
-                                name="logo"
+                                id="photo"
+                                name="photo"
                                 type="file"
                                 className='form-control'
                                 onChange={handleChange}
-                                value={values.logo}
+                                value={values.photo}
                             />
                         </div>
 
                         <div className={productCss.input}>
                             <div className={productCss.btnWrapper}>
-                                <button  className={productCss.submitBtn} type="submit">Add Product</button>
+                                <button  className={productCss.submitBtn} type="submit">Add Brand</button>
                             </div>
                         </div>
                     </div>

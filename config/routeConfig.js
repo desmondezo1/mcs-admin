@@ -5,6 +5,6 @@ export default {
     createProduct : baseUrl + "/admin/products/create",
     login : baseUrl + "/login",
     register : baseUrl + "/",
-    addBrand : baseUrl + "/",
+    addBrand : baseUrl + "/admin/brands/create",
     addCategory : baseUrl + "/",
 }
