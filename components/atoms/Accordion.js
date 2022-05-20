@@ -7,11 +7,11 @@ AccordionList.defaultProps = {
   name: "Test Data",
   label: "List Content",
 };
-export function AccordionList({ id, name, label }) {
+export function AccordionList({inputType="checkbox" , id, name, label, value}) {
   return (
     <div className={`${style.check_list} d-flex flex-row align-items-center`}>
-      <input type="checkbox" id={id} name={name} />
-      <label htmlFor={id}></label>
+      <input type={inputType} id={id + Date.now()} value={value} name={name} />
+      <label htmlFor={id + Date.now()}></label>
       <p>{label}</p>
     </div>
   );
@@ -21,12 +21,12 @@ Accordion.defaultProps = {
   name: "Accordion",
   listData: [],
 };
-function Accordion({ name, listData, children }) {
+function Accordion({ inputType="checkbox", name, listData, children }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className={style.accordion_container}>
-      <button
+      <button type="button"
         className="d-flex flex-row align-items-center"
         onClick={() => setOpen((s) => !s)}
       >
@@ -48,11 +48,11 @@ function Accordion({ name, listData, children }) {
           open && style.open
         } position-relative`}
       >
-        {listData.map(({ name, subList }, i) =>
-          subList.length > 0 ? (
-            <Accordion key={i} name={name} listData={subList} />
+        {listData.map(({ id, title, children }, i) =>
+          children?.length > 0 ? (
+            <Accordion key={i} name={title} listData={children} />
           ) : (
-            <AccordionList key={i} id={`${name}_${i}`} label={name} />
+            <AccordionList  inputType={inputType} key={i} id={`${title}_${i}`} value={id} label={title} />
           )
         )}
       </div>

@@ -7,6 +7,8 @@ import Nav from '../../../components/molecules/Nav'
 import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
 import { useEffect, useState } from 'react'
+import { CategoriaData } from "../../../config/CategoriesData";
+import Accordion, { AccordionList } from "../../../components/atoms/Accordion";
 import { TagsInput } from "react-tag-input-component";
 // import Cookies from 'js-cookie'
 import Cok from 'cookie'
@@ -42,17 +44,26 @@ export default function Prodotti({brands, categories}){
           },
          
           onSubmit: async (values, {resetForm}) => {    
-              let fTag = document.querySelector('form');
-              
+            
+            let fTag = document.querySelector('form');
             const createProduct = routeConfig.createProduct;
             let formD = await values;
                 formD.tag = selectedTag;
+               
+
+                //grab all selected categories into an array 
+                let categories = []
+                let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+                for (var i = 0; i < checkboxes.length; i++) {
+                    categories.push(checkboxes[i].value)
+                }
 
                 let frmData = new FormData(fTag);
                 // frmData.append('brand', formD.brand);
                 // frmData.append('description', formD.description);
                 // frmData.append('title',formD.title);
                 frmData.append('pieces', JSON.stringify(formD.pieces));
+                frmData.append('category', JSON.stringify(categories));
                 // frmData.append('pdf', formD.pdf);
                 // frmData.append('image', formD.image);
                 frmData.append('tag', JSON.stringify(formD.tag));
@@ -61,7 +72,7 @@ export default function Prodotti({brands, categories}){
                 // frmData.append('status', formD.status);
                 // frmData.append('surface', formD.surface);
                 // frmData.append('uses', formD.uses);
-
+                console.log({categories})
             const token = window.localStorage.getItem('token');
             console.log({formD});
             const axiosConfig = {
@@ -372,7 +383,7 @@ export default function Prodotti({brands, categories}){
                     <div className={productCss.formInputWrapper}>
                         <div className={productCss.input}>
                                 <label htmlFor="categoria">Seleziona Categoria</label>
-                                <select  
+                                {/* <select  
                                     name='category' 
                                     className='custom-select form-control'
                                     onChange={formik.handleChange}
@@ -386,7 +397,15 @@ export default function Prodotti({brands, categories}){
                                     })
                                     }
                                    
-                                </select>
+                                </select> */}
+
+                            {categories.map(({ id, title, children }, i) =>
+                                children?.length > 0 ? (
+                                    <Accordion key={i} name={title} listData={children} />
+                                ) : (
+                                    <AccordionList key={i} id={`${title}_${i}`} value={id} label={title} />
+                                )
+                            )}
                         </div>
                     </div>
                 </div>
