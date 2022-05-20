@@ -1,4 +1,4 @@
-export const Categoria = [
+export const CategoriaData = [
   { name: "COVID-19", subList: [] },
   { name: "KIT E OFFERTE", subList: [] },
   {

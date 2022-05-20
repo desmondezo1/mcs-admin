@@ -81,7 +81,7 @@ export default function Prodotti({brands, categories}){
                   }else{
                       toast.error("Sorry, I guess something went wrong")
                   }
-                  resetForm({values: ''})
+                //   resetForm({values: ''})
                 console.log(result)
             
             }).catch(function (error) {

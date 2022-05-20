@@ -2,7 +2,7 @@ import React from "react";
 import PageHeader from "../../../components/molecules/NavHeader";
 // import CategoriaStyle from "../../../styles/prodotti/categoria.css";
 import { RoundedInput } from "../../../components/atoms/Input";
-import { Categoria } from "../../../config/CategoriesData";
+import { CategoriaData } from "../../../config/CategoriesData";
 import Accordion, { AccordionList } from "../../../components/atoms/Accordion";
 import Cok from 'cookie'
 import { ToastContainer, toast } from 'react-toastify';
@@ -76,7 +76,7 @@ function Categoria({categories}) {
               <p>Lista Categoria</p>
             </div>
             <div className="border_black p-2 border-radius-15">
-              {Categoria.map(({ name, subList }, i) =>
+              {CategoriaData.map(({ name, subList }, i) =>
                 subList.length > 0 ? (
                   <Accordion key={i} name={name} listData={subList} />
                 ) : (
@@ -158,7 +158,7 @@ function Categoria({categories}) {
   );
 }
 
-export default categoria;
+export default Categoria;
 
 
 
