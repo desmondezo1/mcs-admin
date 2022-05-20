@@ -45,7 +45,7 @@ function BrandCard({
         </style>
         <div className="cardWrapper">
             <div className="imageWrapper">
-                <Image src={image} />
+                <Image src={image} height={'97px'} width={'97px'} layout='responsive'/>
             </div>
             <div className="brandNameWrapper">
                 {name}

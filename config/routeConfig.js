@@ -9,5 +9,6 @@ export default {
     addBrand : baseUrl + "/admin/brands/create",
     getBrands : baseUrl + "/brands",
     getBrandsAdmin : baseUrl + "/admin/brands",
-    addCategory : baseUrl + "/",
+    addCategory : baseUrl + "/admin/categories/create",
+    getCategories : baseUrl + "/categories",
 }
