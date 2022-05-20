@@ -22,19 +22,21 @@ export default function Brand({brands}){
 
     onSubmit: async (values, {resetForm}) => { 
         let brandUrl = routeConfig.addBrand; 
+        let fTag = document.querySelector('form');
+        let frmData = new FormData(fTag);
         let Val = await values;
         const token = window.localStorage.getItem('token');
         
         const axiosConfig = {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'multipart/form-data',
                 'Authorization': 'Bearer ' + token,
             }
           }
   
           let ax = await axios.post(
               brandUrl,
-              Val,
+              frmData,
               axiosConfig
           ).then(result =>{
             if(result.status == 200){
