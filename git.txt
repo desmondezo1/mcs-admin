@@ -1,1 +1,1 @@
-git pull https://github.com/desmondezo1/mcs-frontend.git admin_dashboard --allow-unrelated-histories
+git pull https://github.com/desmondezo1/mcs-frontend.git admin_dashboard --allow-unrelated-histories 
