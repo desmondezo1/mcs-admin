@@ -12,7 +12,7 @@ import productCss from '../../../styles/prodotti/prodotti.module.css'
 import { useFormik, Field,FormikProvider } from 'formik';
 import routeConfig from '../../../config/routeConfig'
 
-function categoria({categories}) {
+function Categoria({categories}) {
 
     const formik = useFormik({
       initialValues: {
