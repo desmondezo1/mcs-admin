@@ -20,7 +20,7 @@ import {
   RoundedInputWithIcon,
 } from "../../../components/atoms/Input";
 
-function product_list({productListData}) {
+function Product_list({productListData}) {
 
   const[searchTerm, setSearchTerm] = useState('');
 
@@ -110,7 +110,7 @@ function product_list({productListData}) {
   );
 }
 
-export default product_list;
+export default Product_list;
 
 export async function getServerSideProps({req, res}) {
 
