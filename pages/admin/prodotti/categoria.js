@@ -1,6 +1,5 @@
 import React from "react";
 import PageHeader from "../../../components/molecules/NavHeader";
-// import CategoriaStyle from "../../../styles/prodotti/categoria.css";
 import { RoundedInput } from "../../../components/atoms/Input";
 import { CategoriaData } from "../../../config/CategoriesData";
 import Accordion, { AccordionList } from "../../../components/atoms/Accordion";

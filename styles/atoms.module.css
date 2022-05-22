@@ -126,3 +126,30 @@
 .check_list input:checked + label {
   background-color: black;
 }
+
+.table_menu_button_container {
+  position: relative;
+  /* overflow: hidden; */
+}
+.table_menu_button {
+  border: none;
+  background-color: transparent;
+}
+
+.table_menu_button_container_modal {
+  position: absolute;
+  transform: translateX(-100%);
+  width: 180px;
+  padding: 10px;
+  opacity: 1;
+  background-color: white;
+  transition: all 0.3s ease;
+  height: auto;
+  overflow: hidden;
+}
+
+.display_none {
+  opacity: 0;
+  height: 0;
+  transform: translateX(-200%);
+}

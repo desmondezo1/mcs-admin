@@ -1,10 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import style from "../../styles/atoms.module.css";
 
 Buttons.defaultProps = {
   size: "large",
   alignText: "space-between",
+};
+
+Buttons.propTypes = {
+  color: PropTypes.oneOf([
+    "Received",
+    "Cancelled",
+    "Shipped",
+    "Pending",
+    "primary",
+    "secondary",
+  ]),
 };
 function Buttons({
   onClick,

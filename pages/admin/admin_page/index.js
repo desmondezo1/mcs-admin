@@ -10,6 +10,8 @@ import AddIcon from "../../../images/icons/AddIcon";
 import { adminData } from "../../../config/OverviewTable";
 import ProfilePicture from "../../../images/icons/ProfilePicture";
 import TableMenuIcon from "../../../images/icons/TableMenuIcon";
+import MenuButton from "../../../components/atoms/TableMenuButton";
+import TableMenuButton from "../../../components/atoms/TableMenuButton";
 
 function index(props) {
   return (
@@ -63,7 +65,7 @@ function index(props) {
                       {status}
                     </Button>
                     <td>
-                      <TableMenuIcon />
+                      <TableMenuButton />
                     </td>
                   </tr>
                 )
