@@ -1,6 +1,8 @@
 import React from "react";
 
 import Image from "next/image";
+import NotificationIcon from "../../images/icons/NotificationIcon";
+import ProfileImageIcon from "../../images/icons/ProfileImageIcon";
 
 import Logo from "../../images/Logo.png";
 function Header({ children }) {
@@ -9,7 +11,19 @@ function Header({ children }) {
       <nav className="d-flex w-100 flex-row justify-content-between p-3">
         <Image src={Logo} alt="logo" />
 
-        {children}
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row nowrap",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "170px",
+          }}
+        >
+          <NotificationIcon />
+          <ProfileImageIcon />
+          {children}
+        </div>
       </nav>
     </div>
   );

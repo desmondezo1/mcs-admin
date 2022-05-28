@@ -38,6 +38,13 @@ export default async function axiosHttp(url, data, method, token){
         )
     }
 
+    if (method === "DELETE" || method === "delete") {
+         ax = await axios.delete(
+            url,
+            axiosConfig
+        )
+    }
+
     let result = await ax;
     return result.data.data;
 

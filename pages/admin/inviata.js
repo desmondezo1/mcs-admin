@@ -15,7 +15,13 @@ function inviata(props) {
 
       <main className={styles.main}>
         <Header>
-          <p>Dashboard</p>
+          <p
+            style={{
+              margin: "0px",
+            }}
+          >
+            Dashboard
+          </p>
         </Header>
         <div className="body_container">
           <div className={molecule.recover_password}>

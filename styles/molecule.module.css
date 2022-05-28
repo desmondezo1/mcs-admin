@@ -12,8 +12,24 @@
   max-width: 500px;
   height: 340px;
   justify-content: space-between;
+  width: 500px;
 }
 
+@media (max-width: 760px) {
+  .login_form {
+    width: 100%;
+  }
+}
+
+.login_form_child_component {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.login_form_child_component > * {
+  margin: 15px 0;
+}
 .recover_password {
   display: flex;
   flex-flow: column nowrap;
@@ -23,6 +39,11 @@
   justify-content: space-between;
 }
 
+@media (max-width: 760px) {
+  .recover_password {
+    width: 100%;
+  }
+}
 .recover_password p {
   font-size: 0.8em;
 }

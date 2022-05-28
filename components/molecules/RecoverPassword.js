@@ -20,6 +20,7 @@ function RecoverPassword(props) {
           width: "100%",
           justifyContent: "center",
         }}
+        color="primary"
       >
         INVIA
       </Button>

@@ -23,6 +23,7 @@ import {
 function Product_list({productListData}) {
 
   const[searchTerm, setSearchTerm] = useState('');
+  const[tableFilter, settableFilter] = useState('');
 
   return (
     <NavHeader>
@@ -56,6 +57,19 @@ function Product_list({productListData}) {
             ){
               return val;
             }
+          }).filter(val => {
+            if(!tableFilter){
+              return val;
+            } else if(
+              val.status.toLowerCase() === tableFilter.toLowerCase()
+            ){
+              return val;
+            }else if(
+              tableFilter.toLowerCase() === "all"
+            ){
+              return val;
+            }
+
           }).map(
             ({ id, title, status, updated_at }, i) => (
               <tr key={i}>
@@ -99,10 +113,11 @@ function Product_list({productListData}) {
             name="Filter"
             showLabel={false}
             radioButtons={[
-              { label: "TUTTI", value: "TUTTI" },
-              { label: "ATTIVO", value: "ATTIVO" },
-              { label: "BOZZA", value: "BOZZA" },
+              { label: "TUTTI", value: "all" },
+              { label: "ATTIVO", value: "published" },
+              { label: "BOZZA", value: "unpublished" },
             ]}
+            onChange={(e)=>{settableFilter(e.target.value)}}
           />
         </Table>
       </div>
@@ -118,8 +133,7 @@ export async function getServerSideProps({req, res}) {
   let token = cook.token;
   const productsUrl = routeConfig.getProducts;
   let productListData = await axiosHttp(productsUrl,null,'GET',token);
-  
-
+  console.log({productListData});
   return { props: { productListData } }
 }
 

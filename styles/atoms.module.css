@@ -57,6 +57,7 @@
   border: 0;
   border-bottom: 1px solid black;
   padding-bottom: 5px;
+  background: transparent;
 }
 .checkbox_container {
   display: flex;
@@ -79,11 +80,11 @@
 .accordion_body svg {
   transition: all 0.5s cubic-bezier(1, 0, 1, 0);
 }
-.accordion_container .rotate_90 {
+.rotate_90 {
   transform: rotate(270deg);
   transition: all 0.6s ease;
 }
-.accordion_container .rotate_0 {
+.rotate_0 {
   transform: rotate(360deg);
   transition: all 0.6s ease;
 }
@@ -152,4 +153,58 @@
   opacity: 0;
   height: 0;
   transform: translateX(-200%);
+}
+
+.navlink_drop_down {
+  width: 100%;
+  border-radius: 15px;
+  padding: 3px 14px;
+  height: 35px;
+  transition: all 1.2s ease;
+  overflow: hidden;
+  margin: 10px 0;
+  width: 230px;
+  border: 2px solid black !important;
+}
+
+.navlink_drop_down.active {
+  height: auto;
+}
+.navlink_drop_down button {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+}
+
+.navlink_drop_down.active button {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+
+.navlink_drop_down ul {
+  height: 0;
+  overflow: none;
+  transition: all 1s ease-out;
+  max-height: 0;
+}
+
+.navlink_drop_down.active ul {
+  padding: 10px 0px;
+  list-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  height: auto;
+  max-height: 1000px;
+  transition: all 0.1s ease-out;
+}
+.navlink_drop_down li {
+  margin-top: 5px;
+  cursor: pointer;
+}
+.navlink_drop_down li.active {
+  background-color: #cccccc;
 }

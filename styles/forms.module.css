@@ -58,7 +58,6 @@
 }
 
 .form_container .submit_button {
-  background-color: red;
   margin-left: 50% !important;
   transform: translateX(-50%);
 }

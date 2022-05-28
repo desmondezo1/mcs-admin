@@ -1,78 +1,85 @@
-.formWrapper{
-    background-color: #E6E6E6;
-    height: 100%;
-    width: auto;
-    min-width:400px ;
-    border-radius: 12.82px;
-    border: 1px solid #999999;
-    padding: 20px;
-    flex-direction: column;
-    display: flex;
+.formWrapper {
+  background-color: #e6e6e6;
+  height: 100%;
+  width: auto;
+  min-width: 400px;
+  border-radius: 12.82px;
+  border: 1px solid #999999;
+  padding: 20px;
+  flex-direction: column;
+  display: flex;
 }
 
-.formInputSection{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding: 10px 5px 20px 5px;
-    border-bottom: 1px solid #999999;
-    justify-content: space-between;
+.formInputSection {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px 5px 20px 5px;
+  border-bottom: 1px solid #999999;
+  justify-content: space-between;
 }
 
-.formSectionH3{
-    flex-grow: 0.5;
-    font-size: 0.9rem;
-    font-weight: 500;
+.formSectionH3 {
+  flex-grow: 0.5;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
-.dynamicListcontainer{
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    max-width: 65%;
+.dynamicListcontainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 65%;
 }
-.formInputWrapper{
-    flex-grow: 1;
-    max-width: 65%;
-}
-
-.categoryTypeWrapper{
-    display: grid;
-    grid-template-columns: 59% 19% 19%;
-    grid-gap: 10px;  
+.formInputWrapper {
+  flex-grow: 1;
+  max-width: 65%;
 }
 
-.discountPriceWrapper{
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 10px;
+.categoryTypeWrapper {
+  display: grid;
+  grid-template-columns: 59% 19% 19%;
+  grid-gap: 10px;
 }
 
-.input{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+.discountPriceWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
 }
 
-.submitBtn{
-    background-color: black;
-    color: #F0F0F0;
-    padding: 10px 25px;
-    border-radius: 10px;
-    width: 60%;
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
-.btnWrapper{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 10px;
+.submitBtn {
+  background-color: black;
+  color: #f0f0f0;
+  padding: 10px 25px;
+  border-radius: 10px;
+  width: 60%;
+}
+
+.btnWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 @media only screen and (max-width: 900px) {
-    .formInputSection{
-        flex-direction: column;
-    }
+  .formInputSection {
+    flex-direction: column;
+  }
 }
 
+.formWrapper input,
+.formWrapper textarea {
+  background: transparent;
+  border: 1px solid black;
+  border-radius: 15px;
+}

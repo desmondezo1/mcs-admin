@@ -14,6 +14,20 @@ const arr = [
   {
     display: "PRODOTTI",
     href: "/admin/prodotti",
+    subList: [
+      {
+        display: "Aggiungi Prodotto",
+        href: "/agguino",
+      },
+      {
+        href: "/categoria",
+        display: "Lista Prodotti",
+      },
+      {
+        display: "Categoria",
+        href: "/product_list",
+      },
+    ],
   },
   {
     display: "ORDINI",

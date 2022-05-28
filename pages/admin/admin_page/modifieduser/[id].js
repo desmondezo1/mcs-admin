@@ -1,15 +1,15 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../../../components/molecules/Header";
-import Nav from "../../../components/molecules/Nav";
-import styles from "../../../styles/Home.module.css";
-import FormStyle from "../../../styles/forms.module.css";
-import Button from "../../../components/atoms/Buttons";
-import AddIcon from "../../../images/icons/AddIcon";
+import Header from "../../../../components/molecules/Header";
+import Nav from "../../../../components/molecules/Nav";
+import styles from "../../../../styles/Home.module.css";
+import FormStyle from "../../../../styles/forms.module.css";
+import Button from "../../../../components/atoms/Buttons";
+import AddIcon from "../../../../images/icons/AddIcon";
 import {
   RoundedInput,
   RadioButtonContainer,
-} from "../../../components/atoms/Input";
+} from "../../../../components/atoms/Input";
 
 function modifieduser(props) {
   return (
@@ -54,12 +54,17 @@ function modifieduser(props) {
                 <Button
                   className={`position-absolute m-auto ${FormStyle.submit_button}`}
                   size="auto"
+                  color={"primary"}
                 >
                   SALVA{" "}
                 </Button>
               </div>
 
-              <Button fontSize="0.8em" size="auto">
+              <Button
+                fontSize="0.8em"
+                size="auto"
+                onClick={() => router.push("admin_page/nuovouser")}
+              >
                 <AddIcon />
 
                 <p
