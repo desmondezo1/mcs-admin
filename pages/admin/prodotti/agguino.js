@@ -31,7 +31,7 @@ export default function Prodotti({ brands, categories }) {
       brand: "",
       description: "",
       title: "",
-      pieces: [{ price: [0, 0], discount: [0, 0] }],
+      pieces: [{ price: [0, 0], discount: [0, 0] , weight: '', packaging: ''}],
       pdf: "",
       image: [''],
       tag: "",
@@ -49,6 +49,7 @@ export default function Prodotti({ brands, categories }) {
       let fTag = document.querySelector("form");
       const createProduct = routeConfig.createProduct;
       let formD = await values;
+      console.log({formD})
       formD.tag = selectedTag;
 
       //grab all selected categories into an array
