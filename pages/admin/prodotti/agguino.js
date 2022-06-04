@@ -79,6 +79,7 @@ export default function Prodotti({ brands, categories }) {
         .then((result) => {
           if (result.status == 200) {
             toast.success("Added");
+            console.log(result);
           } else {
             toast.error("Sorry, I guess something went wrong");
           }
