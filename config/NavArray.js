@@ -20,12 +20,12 @@ const arr = [
         href: "/agguino",
       },
       {
-        href: "/categoria",
+         href: "/product_list",
         display: "Lista Prodotti",
       },
       {
         display: "Categoria",
-        href: "/product_list",
+      href: "/categoria", 
       },
     ],
   },
