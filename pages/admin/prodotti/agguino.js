@@ -31,7 +31,11 @@ export default function Prodotti({ brands, categories }) {
       brand: "",
       description: "",
       title: "",
+<<<<<<< HEAD
       pieces: [{ price: [0, 0], discount: [0, 0] , weight: '', packaging: ''}],
+=======
+      pieces: [{ price: [0, 0], discount: [0, 0], weight: "", packaging: "" }],
+>>>>>>> 1acc2f91e9ce61187432f5782762ad6d5c80d1da
       pdf: "",
       image: [''],
       tag: "",
@@ -49,7 +53,11 @@ export default function Prodotti({ brands, categories }) {
       let fTag = document.querySelector("form");
       const createProduct = routeConfig.createProduct;
       let formD = await values;
+<<<<<<< HEAD
       console.log({formD})
+=======
+      console.log({formD});
+>>>>>>> 1acc2f91e9ce61187432f5782762ad6d5c80d1da
       formD.tag = selectedTag;
 
       //grab all selected categories into an array
