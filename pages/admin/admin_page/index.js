@@ -16,6 +16,7 @@ import routeConfig from "../../../config/routeConfig";
 import Cok from "cookie";
 import axiosHttp from "../../../utility/httpCalls";
 import { useRouter } from "next/router";
+import { RoundedInputWithIcon } from "../../../components/atoms/Input";
 
 function Index({ users }) {
   const router = useRouter();
@@ -82,18 +83,11 @@ function Index({ users }) {
                 )
               )}
             >
-              <Button color="secondary" size={"auto"}>
-                <p
-                  style={{
-                    margin: "0px",
-                    marginRight: "10px",
-                  }}
-                  className="small_text grey_text mr-1"
-                >
-                  RICERCA USER
-                </p>
-                <SearchIcon />
-              </Button>
+              <RoundedInputWithIcon
+                suffix={SearchIcon}
+                placeholder="RICERCA USER"
+              />
+
               <Button
                 color="secondary"
                 size={"auto"}

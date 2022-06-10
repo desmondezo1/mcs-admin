@@ -1,7 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
-import NotificationIcon from "../../images/icons/NotificationIcon";
+import NotificationTab from "./NotificationTab";
 import ProfileImageIcon from "../../images/icons/ProfileImageIcon";
 
 import Logo from "../../images/Logo.png";
@@ -20,7 +20,7 @@ function Header({ children }) {
             width: "170px",
           }}
         >
-          <NotificationIcon />
+          <NotificationTab />
           <ProfileImageIcon />
           {children}
         </div>

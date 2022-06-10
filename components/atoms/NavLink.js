@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import atom from "../../styles/atoms.module.css";
 
 import Button from "./Buttons";
+import DownArrow from "../../images/icons/DownArrow";
 
 NavLink.propTypes = {
   href: PropTypes.string.isRequired,
@@ -28,6 +30,10 @@ function NavLink({ href, exact, children, ...props }) {
         margin="10px 0"
       >
         {children}
+        <DownArrow
+          stroke={isActive ? "white" : "black"}
+          className={atom.rotate_90}
+        />
       </Button>
     </Link>
   );

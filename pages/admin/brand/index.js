@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Home.module.css";
 import Head from "next/head";
 import Header from "../../../components/molecules/Header";
@@ -13,7 +14,19 @@ import BrandCard from "../../../components/atoms/brandCard";
 import Cok from "cookie";
 
 export default function Brand({ brands }) {
-  console.log("I am waiting for brand Page");
+  const [brandList, setBrandList] = useState([]);
+
+  // created to make sure there is props before using it
+  // to prevent error due to failed requests
+  useEffect(() => {
+    if (brands.length > 0) {
+      setBrandList(brands);
+    }
+  }, [brands]);
+
+  const removeItemFromList = (id) => {
+    setBrandList((prev) => prev.filter((brand) => brand.id !== id));
+  };
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -21,7 +34,7 @@ export default function Brand({ brands }) {
     },
 
     onSubmit: async (values, { resetForm }) => {
-        let brandUrl = routeConfig.addBrand;
+      let brandUrl = routeConfig.addBrand;
       // let brandUrl = "";
       let fTag = document.querySelector("form");
       let frmData = new FormData(fTag);
@@ -76,9 +89,10 @@ export default function Brand({ brands }) {
             border-radius: 12.82px;
             width: 100%;
             border: 1px solid #000;
-            max-width: 510px;
             display: grid;
-            grid-gap: 1rem;
+            grid-gap: 1px;
+            padding: 1rem;
+            grid-template-columns: auto;
           }
 
           @media (min-width: 600px) {
@@ -89,7 +103,7 @@ export default function Brand({ brands }) {
 
           @media (min-width: 900px) {
             .brandListWrapper {
-              grid-template-columns: repeat(3, 1fr);
+              grid-template-columns: repeat(4, auto);
             }
           }
         `}
@@ -117,13 +131,16 @@ export default function Brand({ brands }) {
                       <h3 className={productCss.formSectionH3}>Lista Brand</h3>
                       <div className={`${productCss.formInputWrapper}`}>
                         <div className="brandListWrapper">
-                          {brands.map((brand, index) => {
+                          {brandList.map((brand, index) => {
                             return (
                               <BrandCard
                                 key={index}
                                 image={brand.photo || brandLogo}
                                 totalProducts={brand.count}
                                 name={brand.name}
+                                deletefunction={() => {
+                                  removeItemFromList(brand.id);
+                                }}
                               />
                             );
                           })}
@@ -213,6 +230,15 @@ export async function getServerSideProps({ req, res }) {
     // Pass data to the page via props
     return { props: { brands } };
   } catch (error) {
-    return { props: { brands: [{ count: 100, name: "Phil" }] } };
+    return {
+      props: {
+        brands: [
+          { count: 100, name: "Phil", id: 1 },
+          { count: 100, name: "Phil", id: 2 },
+          { count: 100, name: "Phil", id: 3 },
+          { count: 100, name: "Phil", id: 4 },
+        ],
+      },
+    };
   }
 }
