@@ -28,6 +28,8 @@ function Index({users}) {
   const [categoryFilter, setCategoryFilter] = useState(0);
   useEffect(() => {
     setData(users);
+    // setData([{ id:1, first_name:"esmond", email: "des@gamail.com", status: "active", role: 3, created_at: "32423"}]);
+
     console.log(users);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -107,7 +109,11 @@ function Index({users}) {
                     <TableMenuButton 
                       button1={{ text: 'CATEGORIA 1', method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 1}}}
                       button2={{ text: 'CATEGORIA 2',  method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 3}}}
-                      delete ={{url:`${routeConfig.deleteUser}/${id}`, data: null, method: 'DELETE' }}
+                      viewcontent={null}
+                      modifica={null}
+                      sospende={{ url: `${routeConfig.updateUser}/${id}`, data: {status: "active"}, method: "patch", text: " Attiva Profilo "}}
+                      attiva={{ url:`${routeConfig.updateUser}/${id}`, data: {status: "inactive"}, method: "patch", text: " Sospende Profilo "}}
+                      delete ={{url:`${routeConfig.deleteUser}/${id}`, data: null, method: 'DELETE', text: ' Cancella Profilo '}}
                     />
                   </td>
                 </tr>

@@ -11,14 +11,18 @@ const baseUrl =
 
 export default {
   createProduct: baseUrl + "/admin/products/create",
+  updateProduct: baseUrl + "/admin/products", // + product id
   login: baseUrl + "/login",
   register: baseUrl + "/",
   getUsers: baseUrl + "/admin/users",
   getAdminUsers: baseUrl + "/admin/admins",
   updateUser: baseUrl + "/admin/user", //+ user Id
   deleteUser: baseUrl + "/admin/user", //+ user Id
+  updateOrder: baseUrl + "/admin/order", //+ order Id
   getProducts: baseUrl + "/products",
+  getSingleProduct: baseUrl + "/product",
   updateProduct: baseUrl + "/admin/products",
+  deleteProduct: baseUrl + "/admin/products",
   addBrand: baseUrl + "/admin/brands/create",
   getBrands: baseUrl + "/brands",
   getBrandsAdmin: baseUrl + "/admin/brands",

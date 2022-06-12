@@ -95,7 +95,11 @@ function Product_list({productListData}) {
                   <TableMenuButton 
                   button1={{ text: 'Attivo', method: "patch", url: `${routeConfig.updateProduct}/${id}`, value:{status:"published"}}}
                   button2={{ text: 'BOZZA',  method: "patch", url: `${routeConfig.updateProduct}/${id}`, value:{status:"unpublished"}}}
-                  
+                  viewcontent={null}
+                  attiva={null}
+                  sospende={null}
+                  modifica={{ url: `/admin/prodotti/agguino/${id}`, text: "Modifica Prodotto"}}
+                  delete ={{url:`${routeConfig.deleteProduct}/${id}`, data: null, method: 'DELETE', text: ' Cancella Prodotto '}}
                   />
                 </td>
               </tr>

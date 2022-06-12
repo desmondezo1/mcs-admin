@@ -76,7 +76,13 @@ function Index({ users }) {
                     </Button>
                     <td>
                       <TableMenuButton
-                        modifica_link={`/admin/admin_page/modifieduser/${id}`}
+                        button1={{text: "ATTIVO", url: "", method: "GET", value: ""}}
+                        button2={{text: "SOSPESO", url: "", method: "GET", value: ""}}
+                        viewcontent={null}
+                        modifica={{ url: `/admin/admin_page/modifieduser/${id}`, text: "Modifica User"}}
+                        sospende={null}
+                        attiva={null}
+                        delete={{ url: `${routeConfig.deleteUser}/${id}`, data: "", method: "DELETE", text: "Cancella User"}}
                       />
                     </td>
                   </tr>

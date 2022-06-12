@@ -7,6 +7,7 @@ import ModifyUser from "../../images/icons/ModifyUser";
 import httpCalls from "../../utility/httpCalls";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/router'
 import Cookies from "js-cookie";
 import Link from "next/link";
 
@@ -14,17 +15,20 @@ TableMenuButton.defaultProps = {
   iconContent: <TableMenuIcon />,
   button1: {},
   button2: {},
+  viewcontent: {},
   delete: {},
-  modifica_link: "/modifica",
+  modifica: {},
+  sospende: {},
 };
 
 function TableMenuButton({
   iconContent,
   button1,
   button2,
-  modifica_link,
+  modifica,
   ...rest
 }) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   // console.log(iconContent);
 
@@ -40,16 +44,20 @@ function TableMenuButton({
     }
   };
 
+  let modifyItem = async (url) => {
+    router.push(url);
+  };
+
   let updateItem = async (url, data, method) => {
     const token = window.localStorage.getItem("token");
     let dataResult = await httpCalls(url, data, method, token);
     dataResult = await dataResult;
     if (dataResult) {
       if (dataResult.role == 1) {
-        toast.success("Clienti Added to CATEGORIA 1");
+        toast.success("Updated!");
       }
       if (dataResult.role == 3) {
-        toast.success("Clienti Added to CATEGORIA 2");
+        toast.success("updated!");
       }
     } else {
       toast.error("Sorry, I guess something went wrong");
@@ -71,20 +79,28 @@ function TableMenuButton({
           !open && atomStyle.display_none
         } border_primary border-radius-15`}
       >
-        <Button
-          type={"button"}
-          key={"button1"}
-          onClick={() => {
-            updateItem(button1.url, button1.value, button1.method);
-          }}
-          size="auto"
-          color="primary"
-          fontSize="0.8em"
-          margin={"10px 0"}
-        >
-          {button1.text ? button1.text : "Attivo"}
-        </Button>
-        <Button
+
+        {!button1? "":
+          (<Button
+            type={"button"}
+            key={"button1"}
+            onClick={() => {
+              updateItem(button1.url, button1.value, button1.method);
+            }}
+            size="auto"
+            color="primary"
+            fontSize="0.8em"
+            margin={"10px 0"}
+            style={{cursor: "pointer"}}
+          >
+            {button1.text ? button1.text : "Attivo"}
+          </Button>
+          )}
+        
+
+
+        {!button2? "":
+          (<Button
           type={"button"}
           key={"button2"}
           onClick={() => {
@@ -93,25 +109,114 @@ function TableMenuButton({
           size="auto"
           color="secondary"
           fontSize="0.8em"
+          style={{cursor: "pointer"}}
         >
           {button2.text ? button2.text : "BOZZA"}
         </Button>
+        )}
+
+        {!rest?.viewcontent? "":
+          (<Button
+          type={"button"}
+          key={"button2"}
+          onClick={() => {
+            modifyItem(rest?.viewcontent?.url);
+          }}
+          size="auto"
+          color="secondary"
+          fontSize="0.8em"
+          style={{cursor: "pointer"}}
+        >
+          {rest?.viewcontent.text ? rest?.viewcontent.text : "VIEW"}
+        </Button>
+        )}
+
         <hr />
-        <Link href={modifica_link}>
-          <a>
+
+
+
+
+      {modifica? ( 
+        
+        <p
+          key={"modifyUser" + Date.now()}
+          onClick={() => {
+            modifyItem(modifica.url);
+          }}
+          style={{cursor: "pointer"}}
+        >
             {" "}
-            <ModifyUser /> Modifica User{" "}
-          </a>
-        </Link>
+            <ModifyUser />{modifica.text}{" "}
+
+          
+          </p>)
+          
+          :""}
+       
+          
+      {!rest?.shipped? "" :(
+
+        <p
+          key={"shippedItem" + Date.now()}
+          onClick={() => {
+            updateItem(rest.shipped.url, rest.shipped.data, rest.shipped.method);
+          }}
+          style={{cursor: "pointer"}}
+        >
+          <ModifyUser />
+          {rest?.shipped?.text}
+        </p>
+
+      )}
+
+
+      {!rest?.attiva? "" :(
+
+        <p
+          key={"activatedUser" + Date.now()}
+          onClick={() => {
+            updateItem(rest?.attiva.url, rest.attiva.data, rest.attiva.method);
+          }}
+          style={{cursor: "pointer"}}
+        >
+          <ModifyUser />
+          {rest?.attiva?.text}
+        </p>
+
+      )}
+
+      {!rest?.sospende? "" :(
+
+        <p
+          key={"suspendUser" + Date.now()}
+          onClick={() => {
+            updateItem(rest?.sospende.url, rest.sospende.data, rest.sospende.method);
+          }}
+          style={{cursor: "pointer"}}
+        >
+        <ModifyUser />
+          {rest?.sospende?.text}
+        </p>
+
+      )}
+
+
+      {!rest?.delete? "" :(
+
         <p
           key={"cancelUser" + Date.now()}
           onClick={() => {
             deleteItem(rest.delete.url, rest.delete.data, rest.delete.method);
           }}
+          style={{cursor: "pointer"}}
         >
           <DeleteUserIcon />
-          Cancella User
+          {rest?.delete?.text}
         </p>
+
+          )}
+
+
       </div>
     </div>
   );

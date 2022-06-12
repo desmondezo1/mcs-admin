@@ -22,6 +22,7 @@ import {
 import OrdiniData from "../../config/OrdiniData";
 import DownArrow from "../../images/icons/DownArrow";
 import NavHeader from "../../components/molecules/NavHeader";
+import TableMenuButton from "../../components/atoms/TableMenuButton";
 
 function Index({ ordersData }) {
   const [filter, setFilter] = useState("");
@@ -76,7 +77,15 @@ function Index({ ordersData }) {
                   </Button>
                   <td>{date}</td>
                   <td>
-                    <TableMenuIcon />
+                  <TableMenuButton 
+                  button1={null}
+                  button2={null}
+                  viewcontent={{ text: 'VISUALIZZA DETTAGLI', url: `/`}}
+                  attiva={{ url:`${routeConfig.updateOrder}/${id}`, data: {status: 4}, method: "patch", text: " Shipped "}}
+                  sospende={null}
+                  modifica={null}
+                  delete ={{ url:`${routeConfig.updateOrder}/${id}`, data: {status: 5}, method: "patch", text: " Cancella Ordine "}}
+                  />
                   </td>
                 </tr>
               )
