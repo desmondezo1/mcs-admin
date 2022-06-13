@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavHeader from "../../../components/molecules/NavHeader";
 import Table from "../../../components/molecules/Table";
 import DownArrow from "../../../images/icons/DownArrow";
@@ -24,6 +24,13 @@ function Product_list({productListData}) {
 
   const[searchTerm, setSearchTerm] = useState('');
   const[tableFilter, settableFilter] = useState('');
+  const[prodD, setProdD] = useState();
+
+  useEffect(()=>{
+    if(productListData){
+      setProdD(productListData)
+    }
+  })
 
   return (
     <NavHeader>
@@ -46,10 +53,10 @@ function Product_list({productListData}) {
             "Status",
             () => <DownArrow />,
           ]}
-          tableData={productListData}
+          tableData={prodD}
           displayHead={true}
           selfDisplayComponent={true}
-          displayComponent={productListData.filter(val=>{
+          displayComponent={prodD?.filter(val=>{
             if (!searchTerm) {
               return val;
             } else if(

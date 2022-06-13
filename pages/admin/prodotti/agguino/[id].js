@@ -57,7 +57,7 @@ export default function Prodotti({ brands, categories, product }) {
 
     onSubmit: async (values, { resetForm }) => {
       let fTag = document.querySelector("form");
-      const updateProduct = `${routeConfig.updateProduct}/${product?.id}`;
+      const updateProduct = `${routeConfig.updateProduct}/update/${product?.id}`;
       let formD = await values;
       formD.tag = selectedTag;
 
@@ -85,7 +85,7 @@ export default function Prodotti({ brands, categories, product }) {
       };
 
       let ax = await axios
-        .patch(updateProduct, frmData, axiosConfig)
+        .post(updateProduct, frmData, axiosConfig)
         .then((result) => {
           if (result.status == 200) {
             toast.success("Updated");

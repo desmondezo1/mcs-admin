@@ -37,11 +37,12 @@ function TableMenuButton({
 
     let dataResult = await httpCalls(url, data, method, token);
     dataResult = await dataResult;
-    if (dataResult) {
-      toast.success("Clienti Deleted");
-    } else {
-      toast.error("Sorry, I guess something went wrong");
-    }
+    // console.log({dataResult})
+    // if (dataResult.status == 200) {
+      toast.success(" Cancelled");
+    // } else {
+      // toast.error("Sorry, I guess something went wrong");
+    // }
   };
 
   let modifyItem = async (url) => {
