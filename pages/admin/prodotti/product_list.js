@@ -80,7 +80,7 @@ function Product_list({productListData}) {
           }).map(
             ({ id, title, status, updated_at }, i) => (
               <tr key={i}>
-                <td>{id}</td>
+                <td>{i +1}</td>
                 <td>
                   <ProfilePicture
                     style={{
