@@ -22,7 +22,7 @@ import routeConfig from "../../../../config/routeConfig";
 // import TextArea from '../../components/atoms/form/formElements'
 
 export default function Prodotti({ brands, categories, product }) {
-  const [productOptions, setProductOptions] = useState([{ product: "" }]);
+  const [productOptions, setProductOptions] = useState( product?.variation );
   const [allBrands, setBrands] = useState([]);
   const [selectedTag, setSelectedTag] = useState([]);
 
@@ -33,14 +33,20 @@ export default function Prodotti({ brands, categories, product }) {
   const [surface, setSurface] = useState(product?.surface);
   const [tag, setTag] = useState(product?.tag);
   const [images, setImages] = useState(product?.images);
-  const [brand, setBrand] = useState(product?.brand);
+  const [selectedBrand, setBrand] = useState(product?.brand);
   const [volume, setVolume] = useState(product?.volume);
+  const [variation, setVariation] = useState(product?.variation);
+
+  // addBrand
+  useEffect(()=>{
+    console.log({product})
+  })
 
   const formik = useFormik({
     initialValues: {
       brand: "",
-      description: "decribe",
-      title: "product",
+      description: "",
+      title: "",
       pieces: [{ price: [0, 0], discount: [0, 0], weight: "", packaging: "" }],
       pdf: "",
       image: [''],
@@ -50,9 +56,6 @@ export default function Prodotti({ brands, categories, product }) {
       status: "",
       surface: "",
       uses: "",
-      brand: "",
-      description: "",
-      title: "",
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -186,11 +189,12 @@ export default function Prodotti({ brands, categories, product }) {
                             value={values.brand}
                             id="brand"
                           >
-                            <option defaultValue={""}>Brand..</option>
+                            <option id="brand" defaultValue={''}>{ selectedBrand }</option>
                             {brands.map((brand, index) => {
                               return (
-                                <option key={index} value={brand.id}>
-                                  {brand.name}
+                                <option
+                                key={index} value={brand.id}>
+                                  {brand.name} 
                                 </option>
                               );
                             })}
@@ -205,8 +209,8 @@ export default function Prodotti({ brands, categories, product }) {
                         Pezzi e Prezzi
                       </h3>
                       <div className={productCss.dynamicListcontainer}>
-                        {productOptions.map((singleProduct, index) => {
-                          return (
+                        {productOptions.map((singleProduct, index) => {                      
+                          return ( 
                             <div
                               className={`${productCss.formInputWrapper} productListWrapper`}
                               key={index}
@@ -221,6 +225,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.packaging}
                                     // value={values?.pieces[index]?.packaging}
                                   />
                                 </div>
@@ -232,6 +237,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.weight}
                                     // value={values?.pieces[index]?.weight}
                                   />
                                 </div>
@@ -243,6 +249,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.instock_quantity}
                                     // value={values?.pieces[index]?.quantity}
                                   />
                                 </div>
@@ -259,6 +266,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.price}
                                     // value={values?.pieces[index]?.price[0]}
                                   />
                                 </div>
@@ -272,6 +280,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.offer_price}
                                     // value={values?.pieces[index]?.price[1]
                                     // }
                                   />
@@ -286,6 +295,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.discount}
                                     // value={values?.pieces[index]?.discount[0]}
                                   />
                                 </div>
@@ -299,6 +309,7 @@ export default function Prodotti({ brands, categories, product }) {
                                     type="text"
                                     className="form-control"
                                     onChange={handleChange}
+                                    value={singleProduct?.discount2}
                                     // value={values?.pieces[index]?.discount[1]}
                                   />
                                 </div>
