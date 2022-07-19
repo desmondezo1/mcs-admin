@@ -312,6 +312,19 @@ export default function Prodotti({ brands, categories, product }) {
                         Pezzi e Prezzi
                       </h3>
                       <div className={productCss.dynamicListcontainer}>
+                        {(productOptions?.length < 1) ? (
+                            <div
+                            className={`${productCss.formInputWrapper} productListWrapper`}
+                          >
+                            <div className={productCss.input}>
+                        
+                                <button onClick={handleProductAdd}>
+                                  + AGGIUNGI PEZZO
+                                </button>
+                              
+                            </div>
+                          </div>
+                        ):''}
                         {productOptions.map((singleProduct, index) => {
                           return (
                             <div
