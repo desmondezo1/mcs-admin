@@ -7,7 +7,7 @@ export default async function Login(req, res){
         res.status(400).json({msg : 'Values empty'})
     }
 
-    const respData = await fetch(`${process.env.BACKEND_API_BASE_URL}/login`,{
+    const respData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL}/login`,{
         body: JSON.stringify(req.body.values),
         method: 'POST',
         headers: {

@@ -18,8 +18,7 @@ import {
 } from "../../../../config/prodotti";
 import axios from "axios";
 import routeConfig from "../../../../config/routeConfig";
-// import { Formik, Form, useField } from 'formik';
-// import TextArea from '../../components/atoms/form/formElements'
+
 
 export default function Prodotti({ brands, categories }) {
   const [productOptions, setProductOptions] = useState([{ product: "" }]);

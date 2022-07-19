@@ -9,7 +9,7 @@ export default async function addProduct(req, res){
     
     
         console.log(typeof(req.body));
-    const respData = await fetch(`${process.env.BACKEND_API_BASE_URL}/admin/products/create`,{
+    const respData = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL}/admin/products/create`,{
         body: req.body,
         method: 'POST',
         headers: {
