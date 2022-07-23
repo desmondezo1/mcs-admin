@@ -18,7 +18,7 @@ import {
 } from "../../../../components/atoms/Input";
 import { useRouter } from "next/router";
 
-export default function modifieduser({user}) {
+export default function Modifieduser({user}) {
   const router  = useRouter();
   const [userData, setUserData] = useState(user || {});
   const [firstName, setFirstName] = useState(user?.first_name || "");

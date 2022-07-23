@@ -14,7 +14,7 @@ import {
 } from "../../../components/atoms/Input";
 import NavHeader from "../../../components/molecules/NavHeader";
 
-function nuovouser(props) {
+function Nuovouser(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -100,4 +100,4 @@ function nuovouser(props) {
   );
 }
 
-export default nuovouser;
+export default Nuovouser;
