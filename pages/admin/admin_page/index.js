@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../../components/molecules/Header";
 import Nav from "../../../components/molecules/Nav";
 import styles from "../../../styles/Home.module.css";
@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import { RoundedInputWithIcon } from "../../../components/atoms/Input";
 
 function Index({ users }) {
+  const [searchFilter, setSearchFilter] = useState("none");
   const router = useRouter();
   let editUser = () => {
     router.push("admin_page/nuovouser");
@@ -53,7 +54,16 @@ function Index({ users }) {
               tableData={users}
               displayHead={true}
               selfDisplayComponent={true}
-              displayComponent={users.map(
+              displayComponent={users.filter((item) => {
+                if (searchFilter == "none"|| searchFilter == "") {
+                  return item;
+                }else if ( 
+                  item.first_name.toLowerCase() == searchFilter.toLowerCase() ||
+                  item.first_name.toLowerCase().startsWith(searchFilter.toLowerCase())
+                  ) {
+                  return item;
+                }
+              }).map(
                 ({ first_name, role, created_at, status, id }, i) => (
                   <tr key={i}>
                     <td>
@@ -76,8 +86,8 @@ function Index({ users }) {
                     </Button>
                     <td>
                       <TableMenuButton
-                        button1={{text: "ATTIVO", url: "", method: "GET", value: ""}}
-                        button2={{text: "SOSPESO", url: "", method: "GET", value: ""}}
+                        button1={{text: "ATTIVO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "active"}}}
+                        button2={{text: "SOSPESO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "inactive"}}}
                         viewcontent={null}
                         modifica={{ url: `/admin/admin_page/modifieduser/${id}`, text: "Modifica User"}}
                         sospende={null}
@@ -92,6 +102,7 @@ function Index({ users }) {
               <RoundedInputWithIcon
                 suffix={SearchIcon}
                 placeholder="RICERCA USER"
+                onChange={(e)=>{setSearchFilter(e.target.value)}}
               />
 
               <Button

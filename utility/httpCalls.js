@@ -1,6 +1,7 @@
 // import Cok from 'cookie'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import { ToastContainer, toast } from "react-toastify";
 
 export default async function axiosHttp(url, data, method, token){
     if(!token){
@@ -46,7 +47,12 @@ export default async function axiosHttp(url, data, method, token){
     }
 
     let result = await ax;
+    // if(result.data.status !== 200){
+    //     toast.error(result.data.desc);
+    // }else{
+    //     toast.success(result.data.desc);
+    // }
     return result.data.data;
 
-  
+
 }

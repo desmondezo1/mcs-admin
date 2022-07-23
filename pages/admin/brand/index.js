@@ -24,9 +24,36 @@ export default function Brand({ brands }) {
     }
   }, [brands]);
 
-  const removeItemFromList = (id) => {
+  const removeItemFromList = async (id) => {
     setBrandList((prev) => prev.filter((brand) => brand.id !== id));
+    let deleteBrand = `${routeConfig.deleteBrand}/${id}`;
+    const token = window.localStorage.getItem("token");
+
+    const axiosConfig = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    let ax = await axios
+      .delete(deleteBrand, axiosConfig)
+      .then((result) => {
+        if (result.status == 200) {
+          toast.success("deleted");
+        } else {
+          toast.error("Sorry, I guess something went wrong");
+        }
+        // resetForm({ values: "" });
+        console.log(result);
+      })
+      .catch(function (error) {
+        toast.error("Sorry, I guess something went wrong");
+        console.log(error.response.data);
+      });
   };
+
+
   const formik = useFormik({
     initialValues: {
       name: "",

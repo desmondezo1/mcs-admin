@@ -57,15 +57,11 @@ function Index({users}) {
             displayComponent={data.filter(val => {
               if (!categoryFilter) {
                 return val;
-              }
-              
-              if(
-                categoryFilter === val.role
+              }else if(
+                categoryFilter == val.role
               ){
                 return val;
-              }
-
-              if(
+              }else  if(
                 categoryFilter === 0
               ){
                 return val;
@@ -111,8 +107,8 @@ function Index({users}) {
                       button2={{ text: 'CATEGORIA 2',  method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 3}}}
                       viewcontent={null}
                       modifica={null}
-                      sospende={{ url: `${routeConfig.updateUser}/${id}`, data: {status: "active"}, method: "patch", text: " Attiva Profilo "}}
-                      attiva={{ url:`${routeConfig.updateUser}/${id}`, data: {status: "inactive"}, method: "patch", text: " Sospende Profilo "}}
+                      sospende={{ url: `${routeConfig.updateUserStatus}/${id}/status`, data: {status: "active"}, method: "patch", text: " Attiva Profilo "}}
+                      attiva={{ url:`${routeConfig.updateUserStatus}/${id}/status`, data: {status: "inactive"}, method: "patch", text: " Sospende Profilo "}}
                       delete ={{url:`${routeConfig.deleteUser}/${id}`, data: null, method: 'DELETE', text: ' Cancella Profilo '}}
                     />
                   </td>

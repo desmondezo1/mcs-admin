@@ -25,21 +25,31 @@ import NavHeader from "../../components/molecules/NavHeader";
 import TableMenuButton from "../../components/atoms/TableMenuButton";
 
 function Index({ ordersData }) {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("none");
+  const [searchFilter, setSearchFilter] = useState("none");
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(ordersData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const displayStatusName = (statusId) =>{
+    return ["none","Received","Cancelled","Shipped","Pending" ][statusId];    
+  }
+
+  const formatDatetoString = (date) => {
+    let d = new Date(date);
+    return `${d.getDate()} - ${d.getMonth()} - ${d.getFullYear()}  ${d.getHours()}:${d.getMinutes()}`;
+  }
+
   useEffect(() => {
     const newData = ordersData.filter((item) => {
-      return filter === "none" ? true : item.status === filter;
+      return filter === "none" ? true : +item.status === filter;
     });
-    // setData(newData);
+    setData(newData);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
   return (
     <NavHeader>
       <div className={styles.overview_body_container}>
@@ -53,6 +63,7 @@ function Index({ ordersData }) {
               "Email",
               "Valore",
               "Status",
+              "Pagamento",
               "Data Creata",
               <DownArrow key="arr" />,
             ]}
@@ -60,29 +71,56 @@ function Index({ ordersData }) {
             displayHead={true}
             selfDisplayComponent={true}
             display
-            displayComponent={data.map(
-              ({ id, name, email, valore, status, date }, i) => (
+            displayComponent={data.filter((item) => {
+              if (searchFilter == "none"|| searchFilter == "") {
+                return item;
+              }else if (
+                item.id == searchFilter||
+                item.first_name.toLowerCase().startsWith(searchFilter.toLowerCase()) ||
+                item.last_name.toLowerCase().startsWith(searchFilter.toLowerCase()) ||
+                item.email.toLowerCase().startsWith(searchFilter.toLowerCase())
+                ) {
+                return item;
+              }
+            }).map(
+              ({ id, first_name, last_name, email, total_amount, status, payment_status, created_at, }, i) => (
                 <tr key={i}>
                   <td>{id}</td>
-                  <td>{name}</td>
+                  <td>{`${first_name} ${last_name}`}</td>
                   <td>{email}</td>
-                  <td>{valore}</td>
-                  <Button
+                  <td>{total_amount}</td>
+                  <td>
+                    <Button
                     size={"auto"}
                     fontSize="0.8em"
-                    color={status}
+                    color={displayStatusName(status)}
                     margin="16px 0"
+                    className={`${displayStatusName(status).toLowerCase()}`}
                   >
-                    {status}
+                    {!status? displayStatusName(0): displayStatusName(status)}
                   </Button>
-                  <td>{date}</td>
+                  </td>
+
+                  <td>
+                    <Button
+                    size={"auto"}
+                    fontSize="0.8em"
+                    color={!+payment_status? "Cancelled": "Received" }
+                    margin="16px 0"
+                    className={`${displayStatusName(status).toLowerCase()}`}
+                  >
+                    {+payment_status? "Pagato": "non pagato"}
+                  </Button>
+                  </td>
+                  <td>{formatDatetoString(created_at)}</td>
                   <td>
                   <TableMenuButton 
                   button1={null}
                   button2={null}
                   viewcontent={{ text: 'VISUALIZZA DETTAGLI', url: `/`}}
-                  attiva={{ url:`${routeConfig.updateOrder}/${id}`, data: {status: 4}, method: "patch", text: " Shipped "}}
-                  sospende={null}
+                  attiva={{ url:`${routeConfig.updateOrder}/${id}`, data: {status: 3}, method: "patch", text: " Shipped "}}
+                  sospende={{url:`${routeConfig.updateOrder}/${id}`, data: {status: 1}, method: "patch", text: " Received "}}
+                  shipped={{url:`${routeConfig.updateOrder}/${id}`, data: {status: 4}, method: "patch", text: " Pending "}}
                   modifica={null}
                   delete ={{ url:`${routeConfig.updateOrder}/${id}`, data: {status: 5}, method: "patch", text: " Cancella Ordine "}}
                   />
@@ -94,6 +132,7 @@ function Index({ ordersData }) {
             <RoundedInputWithIcon
               Suffix={SearchIcon}
               placeholder="RICERCA ORDINE"
+              onChange={(e)=>{setSearchFilter(e.target.value)}}
             />
 
             <RadioButtonContainer
@@ -102,12 +141,12 @@ function Index({ ordersData }) {
               showLabel={false}
               changeState={setFilter}
               radioButtons={[
-                { label: "TUTTI", value: "Tutti" },
-                { label: "RECEIVED", value: "Received" },
-                { label: "PENDING", value: "Pending" },
-                { label: "CANCELLED", value: "Cancelled" },
-                { label: "SHIPPED", value: "Shipped" },
-                { label: "No FIlter", value: "none" },
+                { label: "TUTTI", value: "none" },
+                { label: "RECEIVED", value: 1 },
+                { label: "PENDING", value: 4 },
+                { label: "CANCELLED", value: 2 },
+                { label: "SHIPPED", value: 3 },
+                // { label: "No FIlter", value: "none" },
               ]}
             />
           </Table>

@@ -63,7 +63,7 @@ function BrandCard({ image, name, totalProducts, deletefunction, ...rest }) {
           <Image
             src={image}
             height={"40px"}
-            // width={"40px"}
+            width={"100%"}
             layout="intrinsic"
             style={{
               width: "400px",

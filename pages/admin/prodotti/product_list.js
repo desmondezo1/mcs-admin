@@ -100,8 +100,8 @@ function Product_list({productListData}) {
                 </Buttons>
                 <td>
                   <TableMenuButton 
-                  button1={{ text: 'Attivo', method: "patch", url: `${routeConfig.updateProduct}/${id}`, value:{status:"published"}}}
-                  button2={{ text: 'BOZZA',  method: "patch", url: `${routeConfig.updateProduct}/${id}`, value:{status:"unpublished"}}}
+                  button1={{ text: 'Attivo', method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"published"}}}
+                  button2={{ text: 'BOZZA',  method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"unpublished"}}}
                   viewcontent={null}
                   attiva={null}
                   sospende={null}
