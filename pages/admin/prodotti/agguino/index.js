@@ -49,6 +49,11 @@ export default function Prodotti({ brands, categories }) {
       const createProduct = routeConfig.createProduct;
       let formD = await values;
       formD.tag = selectedTag;
+      let imgInput = document.getElementById('image').value;
+      if (!imgInput) {
+        toast.info('Product Image cannot be empty!');
+        return;
+      }
 
       //grab all selected categories into an array
       let categories = [];
