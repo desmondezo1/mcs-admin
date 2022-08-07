@@ -18,7 +18,7 @@ function Table({orders}) {
         tableData={orders}
         displayHead={false}
         selfDisplayComponent={true}
-        displayComponent={orders.map(
+        displayComponent={orders?.map(
           ({ id, first_name, last_name, email, total_amount, status, date }, i) => (
             <tr key={i}>
               <td>{id}</td>
