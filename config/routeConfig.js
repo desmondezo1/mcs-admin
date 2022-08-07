@@ -17,6 +17,7 @@ export default {
   getUsers: baseUrl + "/admin/users",
   createUser: baseUrl + "/admin/user/create", 
   getUser: baseUrl + "/admin/user", // +userID
+  getOrderDetails: baseUrl + "/orders", //+orderid
   getAdminUsers: baseUrl + "/admin/admins",
   updateUser: baseUrl + "/admin/user", //+ user Id
   updateNonAdminUser: baseUrl + "/user", //+ user Id

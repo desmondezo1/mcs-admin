@@ -6,30 +6,34 @@ import TableData from "../../../config/OverviewTable";
 import { useRouter } from "next/router";
 import Arrow from "../../../images/icons/Arrow";
 
-function Table(props) {
+function Table({orders}) {
   const router = useRouter();
+  const displayStatusName = (statusId) =>{
+    return ["none","Received","Cancelled","Shipped","Pending" ][statusId];    
+  }
   return (
     <div className={styles.table}>
       <TableComponent
         headKey={["id", "name", "email", "amount", "status", "date"]}
-        tableData={TableData}
+        tableData={orders}
         displayHead={false}
         selfDisplayComponent={true}
-        displayComponent={TableData.map(
-          ({ id, name, email, amount, status, date }, i) => (
+        displayComponent={orders.map(
+          ({ id, first_name, last_name, email, total_amount, status, date }, i) => (
             <tr key={i}>
               <td>{id}</td>
-              <td>{name}</td>
+              <td>{first_name} {last_name}</td>
               <td>{email}</td>
-              <td>{amount}</td>
+              <td>{total_amount}</td>
               <Button
-                size={"auto"}
-                fontSize="0.8em"
-                color={status}
-                margin="16px 0"
-              >
-                {status}
-              </Button>
+                    size={"auto"}
+                    fontSize="0.8em"
+                    color={displayStatusName(status)}
+                    margin="16px 0"
+                    className={`${displayStatusName(status).toLowerCase()}`}
+                  >
+                    {!status? displayStatusName(0): displayStatusName(status)}
+                  </Button>
               <td>{date}</td>
             </tr>
           )
