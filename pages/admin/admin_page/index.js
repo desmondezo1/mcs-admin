@@ -25,6 +25,14 @@ function Index({ users }) {
     router.push("admin_page/nuovouser");
   };
 
+  const setColor = (param1, param2) =>{
+    if (param1 == param2){
+      return "primary"
+    }
+
+    return "secodary"
+}
+
   return (
     <div className={styles.container}>
       <Head>
@@ -86,8 +94,8 @@ function Index({ users }) {
                     </Button>
                     <td>
                       <TableMenuButton
-                        button1={{text: "ATTIVO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "active"}}}
-                        button2={{text: "SOSPESO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "inactive"}}}
+                        button1={{text: "ATTIVO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "active"}, color: setColor(status, "active")}}
+                        button2={{text: "SOSPESO", url: `${routeConfig.updateUserStatus}/${id}/status`, method: "patch", value: {status: "inactive"}, color: setColor(status, "inactive")}}
                         viewcontent={null}
                         modifica={{ url: `/admin/admin_page/modifieduser/${id}`, text: "Modifica User"}}
                         sospende={null}

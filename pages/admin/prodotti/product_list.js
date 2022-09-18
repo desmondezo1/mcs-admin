@@ -32,6 +32,14 @@ function Product_list({productListData}) {
     }
   })
 
+  const setColor = (param1, param2) =>{
+    if (param1 == param2){
+      return "primary"
+    }
+
+    return "secodary"
+}
+
   return (
     <NavHeader>
       <div
@@ -100,8 +108,8 @@ function Product_list({productListData}) {
                 </Buttons>
                 <td>
                   <TableMenuButton 
-                  button1={{ text: 'Attivo', method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"published"}}}
-                  button2={{ text: 'BOZZA',  method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"unpublished"}}}
+                  button1={{ text: 'Attivo', method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"published"}, color: setColor(status, 'published')}}
+                  button2={{ text: 'BOZZA',  method: "patch", url: `${routeConfig.updateProductStatus}/${id}/status`, value:{status:"unpublished"}, color: setColor(status, 'unpublished')}}
                   viewcontent={null}
                   attiva={null}
                   sospende={null}

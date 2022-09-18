@@ -99,7 +99,7 @@ function TableMenuButton({
               updateItem(button1.url, button1.value, button1.method);
             }}
             size="auto"
-            color="primary"
+            color={button1?.color}
             fontSize="0.8em"
             margin={"10px 0"}
             style={{cursor: "pointer"}}
@@ -118,7 +118,7 @@ function TableMenuButton({
             updateItem(button2.url, button2.value, button2.method);
           }}
           size="auto"
-          color="secondary"
+          color={button1?.color}
           fontSize="0.8em"
           style={{cursor: "pointer"}}
         >

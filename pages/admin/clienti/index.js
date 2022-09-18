@@ -33,6 +33,13 @@ function Index({users}) {
     console.log(users);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const setColor = (role, expected) =>{
+      if (role == expected){
+        return "primary"
+      }
+
+      return "secodary"
+  }
   // useEffect(() => {
   //   const newData = ClientList.filter((item) => {
   //     return filter === "none" ? true : item.status === filter;
@@ -103,8 +110,8 @@ function Index({users}) {
                   </Button>
                   <td>
                     <TableMenuButton 
-                      button1={{ text: 'CATEGORIA 1', method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 1}}}
-                      button2={{ text: 'CATEGORIA 2',  method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 3}}}
+                      button1={{ text: 'CATEGORIA 1', method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 1}, color: setColor(role, 1)}}
+                      button2={{ text: 'CATEGORIA 2',  method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 3}, color: setColor(role, 3)}}
                       viewcontent={null}
                       modifica={null}
                       sospende={{ url: `${routeConfig.updateUserStatus}/${id}/status`, data: {status: "active"}, method: "patch", text: " Attiva Profilo "}}
