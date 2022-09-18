@@ -30,7 +30,7 @@ function Index({ users }) {
       return "primary"
     }
 
-    return "secondry"
+    return "secondary"
 }
 
   return (

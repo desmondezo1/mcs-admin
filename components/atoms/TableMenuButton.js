@@ -30,8 +30,9 @@ function TableMenuButton({
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [btn1, setBtn1] = useState(button1);
+  const [btn2, setBtn2] = useState(button2);
   // console.log(iconContent);
-
   let deleteItem = async (url, data, method) => {
     const token = window.localStorage.getItem("token");
 
@@ -99,7 +100,7 @@ function TableMenuButton({
               updateItem(button1.url, button1.value, button1.method);
             }}
             size="auto"
-            color={button1?.color}
+            color={btn1.color}
             fontSize="0.8em"
             margin={"10px 0"}
             style={{cursor: "pointer"}}
@@ -118,7 +119,7 @@ function TableMenuButton({
             updateItem(button2.url, button2.value, button2.method);
           }}
           size="auto"
-          color={button1?.color}
+          color={btn2?.color}
           fontSize="0.8em"
           style={{cursor: "pointer"}}
         >

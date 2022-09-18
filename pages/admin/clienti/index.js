@@ -34,11 +34,12 @@ function Index({users}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const setColor = (role, expected) =>{
-      if (role === expected){
+    console.log(role, expected);
+      if (+role === +expected){
         return "primary"
       }
 
-      return "secondry"
+      return "secondary"
   }
   // useEffect(() => {
   //   const newData = ClientList.filter((item) => {
