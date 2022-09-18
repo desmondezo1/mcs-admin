@@ -38,7 +38,7 @@ function Index({users}) {
         return "primary"
       }
 
-      return "secodary"
+      return "secondry"
   }
   // useEffect(() => {
   //   const newData = ClientList.filter((item) => {

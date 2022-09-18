@@ -37,7 +37,7 @@ function Product_list({productListData}) {
       return "primary"
     }
 
-    return "secodary"
+    return "secondry"
 }
 
   return (
