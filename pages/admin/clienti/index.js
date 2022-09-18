@@ -34,7 +34,7 @@ function Index({users}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const setColor = (role, expected) =>{
-      if (role == expected){
+      if (role === expected){
         return "primary"
       }
 
