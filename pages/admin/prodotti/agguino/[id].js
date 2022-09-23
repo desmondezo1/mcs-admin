@@ -194,7 +194,7 @@ export default function Prodotti({ brands, categories, product }) {
           if (result.status == 200) {
             toast.success("Updated");
             console.log(result);
-            window.location.reload();
+            // window.location.reload();
           } else {
             toast.error("Sorry, I guess something went wrong");
           }
