@@ -113,7 +113,7 @@ function Index({users}) {
                     <TableMenuButton 
                       button1={{ text: 'CATEGORIA 1', method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 1}, color: setColor(role, 1)}}
                       button2={{ text: 'CATEGORIA 2',  method: "patch", url: `${routeConfig.updateUser}/${id}`, value:{role: 3}, color: setColor(role, 3)}}
-                      viewcontent={null}
+                      viewcontent={{ text: 'Cambia la Password', url: `/admin/clienti/modifieduser/${id}`}}
                       modifica={null}
                       sospende={{ url: `${routeConfig.updateUserStatus}/${id}/status`, data: {status: "active"}, method: "patch", text: " Attiva Profilo "}}
                       attiva={{ url:`${routeConfig.updateUserStatus}/${id}/status`, data: {status: "inactive"}, method: "patch", text: " Sospende Profilo "}}
