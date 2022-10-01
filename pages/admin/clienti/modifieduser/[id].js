@@ -90,7 +90,7 @@ export default function Modifieduser({user}) {
                 <RoundedInput id={`email`} name={'email'} value={email} onChange={(e)=>{setEmail(e.target.value)}}  label="EMAIL" />
                 <RoundedInput id={`phone`} name={'phone'} value={phone} onChange={(e)=>{setPhone(e.target.value)}}  label="TELEFONO" />
                 <RoundedInput id={`password`} name={'password'} value={password} onChange={(e)=>{setPassword(e.target.value)}}  label="PASSWORD" type="password" />
-                <RadioButtonContainer
+                {/* <RadioButtonContainer
                   name={"RUOLO"}
                   radioButtons={[
                     {
@@ -103,7 +103,7 @@ export default function Modifieduser({user}) {
                     },
                   ]}
                   changeState={setChange}
-                />
+                /> */}
 
                 <Button
                   className={`position-absolute m-auto ${FormStyle.submit_button}`}
