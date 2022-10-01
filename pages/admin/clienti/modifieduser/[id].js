@@ -51,7 +51,7 @@ export default function Modifieduser({user}) {
         'email': email,
         'password': password,
         'phone': phone,
-        'role': `${userRole}`
+        // 'role': `${userRole}`
       }, axiosConfig).then((res) => {
         if (res.status == 200) {
           toast.success("Updated!")
