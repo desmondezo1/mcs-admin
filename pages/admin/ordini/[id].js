@@ -11,8 +11,24 @@ import { useState } from "react";
 
 
 
-export default function OrdiniDetails({order}) {
+export default function OrdiniDetails({order, token}) {
     const [prd, setPrd] = useState(JSON.parse(order?.product_id));
+    
+    useEffect(() => {
+
+        const axiosConfig = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          };
+
+      let ax = axios.get(`user/${order?.user_id}/billing-address`,axiosConfig).then(r => console.log({r}))
+    
+      return () => {
+      }
+    }, [])
+    
    
     return (<>
         <NavHeader>
@@ -113,6 +129,15 @@ export default function OrdiniDetails({order}) {
                                 <li>{order?.order_number}</li>
                             </ul>
                         
+                            <ul>
+                                <li>Dati di Fatturazione</li>
+                                <li>{order?.first_name} {order?.last_name}</li>
+                                <li>{order?.address}</li>
+                                <li>{order?.phone}</li>
+                                <li>{order?.email}</li>
+                                <li>{order?.order_number}</li>
+                            </ul>
+                        
 
 
 
@@ -131,6 +156,8 @@ export default function OrdiniDetails({order}) {
 
 export async function getServerSideProps({ req, res, params }) {
     // let token = req.headers.Cookies || '';
+
+    // user/{user_id}/billing-address
   
     try {
       let cook = Cok.parse(req.headers.cookie) || "";
@@ -150,9 +177,11 @@ export async function getServerSideProps({ req, res, params }) {
       if (result.data.data) {
         order = result.data.data;
       }
+
+
   
       // Pass data to the page via props
-      return { props: { order } };
+      return { props: { order , token} };
     } catch (error) {
       return {
         props: {
