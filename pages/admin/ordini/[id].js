@@ -27,10 +27,7 @@ export default function OrdiniDetails({order, token}) {
       let ax = axios.get(`${routeConfig.updateNonAdminUser}/${order?.user_id}/billing-address`,axiosConfig).then(r =>{
         setBillingAdd(r.data.data);
       })
-    
-      return () => {
-      }
-    }, [])
+    })
     
    
     return (<>
