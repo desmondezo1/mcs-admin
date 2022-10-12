@@ -7,13 +7,13 @@ import axios from "axios";
 import style from "../../../styles/table.module.css";
 import productCss from "../../../styles/prodotti/prodotti.module.css";
 import Cok from "cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
 export default function OrdiniDetails({order, token}) {
     const [prd, setPrd] = useState(JSON.parse(order?.product_id));
-    
+
     useEffect(() => {
 
         const axiosConfig = {
