@@ -119,7 +119,10 @@ export default function OrdiniDetails({order, token}) {
                             </table>
                         </div>
 
-                        <div className={productCss.input}>
+                        <div className={productCss.input} style={{
+                           display: "flex",
+                           flexDirection: "row",
+                        }}>
                             <ul>
                                 <li>Dati di Spedizione</li>
                                 <li>{order?.first_name} {order?.last_name}</li>
