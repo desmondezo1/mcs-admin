@@ -23,7 +23,7 @@ export default function OrdiniDetails({order, token}) {
             },
           };
 
-      let ax = axios.get(`user/${order?.user_id}/billing-address`,axiosConfig).then(r => console.log({r}))
+      let ax = axios.get(`${routeConfig.getOrderDetails}/user/${order?.user_id}/billing-address`,axiosConfig).then(r => console.log({r}))
     
       return () => {
       }
