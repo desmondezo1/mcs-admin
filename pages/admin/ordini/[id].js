@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 
 export default function OrdiniDetails({order, token}) {
     const [prd, setPrd] = useState(JSON.parse(order?.product_id));
+    const [billingAdd, setBillingAdd] = useState({});
 
     useEffect(() => {
 
@@ -23,7 +24,9 @@ export default function OrdiniDetails({order, token}) {
             },
           };
 
-      let ax = axios.get(`${routeConfig.updateNonAdminUser}/${order?.user_id}/billing-address`,axiosConfig).then(r => console.log({r}))
+      let ax = axios.get(`${routeConfig.updateNonAdminUser}/${order?.user_id}/billing-address`,axiosConfig).then(r =>{
+        setBillingAdd(r.data.data);
+      })
     
       return () => {
       }
@@ -131,10 +134,10 @@ export default function OrdiniDetails({order, token}) {
                         
                             <ul>
                                 <li>Dati di Fatturazione</li>
-                                <li>{order?.first_name} {order?.last_name}</li>
-                                <li>{order?.address}</li>
-                                <li>{order?.phone}</li>
-                                <li>{order?.email}</li>
+                                <li>{billingAdd?.first_name} {billingAdd?.last_name}</li>
+                                <li>{billingAdd?.address1}</li>
+                                <li>{billingAdd?.phone}</li>
+                                <li>{billingAdd?.email}</li>
                                 <li>{order?.order_number}</li>
                             </ul>
                         
