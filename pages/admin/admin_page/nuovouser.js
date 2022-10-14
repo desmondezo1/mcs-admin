@@ -51,6 +51,9 @@ function Nuovouser(props) {
         if (res.status == 200) {
           toast.success(res.status.desc)
         }
+        if (res?.data?.status == 200) {
+          toast.success(res.status.desc)
+        }
         console.log(res);
       }).catch((error)=>{
         console.error(error.response);
