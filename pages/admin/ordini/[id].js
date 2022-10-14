@@ -126,7 +126,7 @@ export default function OrdiniDetails({order, token}) {
                             <ul>
                                 <li>Dati di Spedizione</li>
                                 <li>{order?.first_name} {order?.last_name}</li>
-                                <li>{order?.address}</li>
+                                <li>{billingAdd?.address1}</li>
                                 <li>{order?.phone}</li>
                                 <li>{order?.email}</li>
                                 <li>{billingAdd?.tax_id_code}</li>
