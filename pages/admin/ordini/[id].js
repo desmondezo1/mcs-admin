@@ -135,9 +135,23 @@ export default function OrdiniDetails({order, token}) {
                             <ul>
                                 <li>Dati di Fatturazione</li>
                                 <li>{billingAdd?.first_name} {billingAdd?.last_name}</li>
+                                <li>{billingAdd?.company_name}</li>
                                 <li>{billingAdd?.address1}</li>
                                 <li>{billingAdd?.phone}</li>
                                 <li>{billingAdd?.email}</li>
+                                <li>{billingAdd?.tax_id_code}</li>
+                                <li>{billingAdd?.vat_number}</li>
+                                <li>{billingAdd?.unique_code}</li>
+                                <li>{billingAdd?.pec}</li>
+                                <li>{billingAdd?.reference_person}</li>
+                                <li>{billingAdd?.house_no}</li>
+                                <li>{billingAdd?.aptsuite}</li>
+                                <li>{billingAdd?.recipient_code}</li>
+                                <li>{billingAdd?.fax}</li>
+                                <li>{billingAdd?.cap}</li>
+                                <li>{billingAdd?.city}</li>
+                                <li>{billingAdd?.country}</li>
+                              
                                 <li>{order?.order_number}</li>
                             </ul>
                         
